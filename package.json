@@ -1,13 +1,13 @@
 {
   "name": "src",
-  "version": "0.1.8",
+  "version": "0.1.7",
   "description": "",
   "main": "background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "add-version": "cross-var replace -s \"@VERSION@\" $npm_package_version ./build.js",
-    "clean": "rm -rf ../build && mkdir ../build",
-    "build": "npm run add-version && cross-var zip -r ../build/$npm_package_version.zip ./",
+    "add-version": "npm version patch && cross-var replace -s \"@VERSION@\" $npm_package_version ./build.js",
+    "build-js": "node ./build.js",
+    "build": "npm run add-version && npm run build-js && cross-var zip -r ./build/$npm_package_version.zip ./src/",
     "build:development": "",
     "build:production": ""
   },
@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/devDan118/novote/issues"
   },
-  "homepage": "https://github.com/devDan118/novote#readme"
+  "homepage": "https://github.com/devDan118/novote#readme",
+  "dependencies": {}
 }
