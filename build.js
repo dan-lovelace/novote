@@ -1,7 +1,7 @@
 const fs = require('fs');
 const AdmZip = require('adm-zip');
 
-const VERSION = '0.1.20';
+const VERSION = '@VERSION@';
 
 // update extension's manifest file
 const manifest = fs.readFile('./src/manifest.json', function(readErr, data) {
@@ -14,7 +14,7 @@ const manifest = fs.readFile('./src/manifest.json', function(readErr, data) {
 
     // zip it all up with the latest build
     const zip = new AdmZip();
-    
+
     zip.addLocalFolder('src');
     zip.writeZip('./build/' + VERSION + '.zip');
   });
