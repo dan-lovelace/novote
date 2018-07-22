@@ -1,0 +1,24 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf ../build && mkdir ../build",
+    "build": "npm run clean && zip -r ../build/0.1.7.zip ./",
+    "build:development": "",
+    "build:production": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devDan118/novote.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devDan118/novote/issues"
+  },
+  "homepage": "https://github.com/devDan118/novote#readme"
+}
