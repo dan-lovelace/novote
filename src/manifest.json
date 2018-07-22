@@ -1,7 +1,7 @@
 {
   "name": "NoVote",
   "manifest_version": 2,
-  "version": "@VERSION@",
+  "version": "0.1.11",
   "description": "Hide Reddit's post voting system",
   "permissions": [
     "declarativeContent"
