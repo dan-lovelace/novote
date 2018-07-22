@@ -5,7 +5,7 @@
   "main": "background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "add-version": "npm version patch",
+    "add-version": "npm version patch && git add .",
     "build-js": "replace '@VERSION@' $npm_package_version build.js && node ./build.js",
     "build": "npm run add-version && mkdir -p build && npm run build-js && zip -r ./build/$npm_package_version.zip ./src/ && npm run post-build",
     "post-build": "replace $npm_package_version '@VERSION@' build.js",
