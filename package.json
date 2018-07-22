@@ -1,12 +1,13 @@
 {
   "name": "src",
-  "version": "1.0.0",
+  "version": "0.1.7",
   "description": "",
   "main": "background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "add-version": "cross-var replace -s \"@VERSION@\" $npm_package_version ./build.js",
     "clean": "rm -rf ../build && mkdir ../build",
-    "build": "npm run clean && zip -r ../build/0.1.7.zip ./",
+    "build": "npm run add-version && cross-var zip -r ../build/$npm_package_version.zip ./",
     "build:development": "",
     "build:production": ""
   },

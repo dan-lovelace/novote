@@ -1,5 +1,5 @@
 {
-  "name": "Reddit NoVote",
+  "name": "NoVote",
   "manifest_version": 2,
   "version": "0.1.7",
   "description": "Hide Reddit's post voting system",
