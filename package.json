@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "add-version": "npm version patch",
-    "build-js": "cross-var replace '@VERSION@' '$npm_package_version' build.js && node ./build.js",
-    "build": "npm run build-js && cross-var bestzip ./build/$npm_package_version.zip ./src/",
+    "build-js": "replace '@VERSION@' '$npm_package_version' build.js && node ./build.js",
+    "build": "npm run build-js && zip ./build/$npm_package_version.zip ./src/",
     "build:development": "",
     "build:production": ""
   },
