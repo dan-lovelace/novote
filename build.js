@@ -1,5 +1,4 @@
 const fs = require('fs');
-const AdmZip = require('adm-zip');
 
 const VERSION = '@VERSION@';
 
@@ -13,6 +12,7 @@ const manifest = fs.readFile('./src/manifest.json', function(readErr, data) {
     if (writeErr) return;
 
     // zip it all up with the latest build
+    const AdmZip = require('adm-zip');
     const zip = new AdmZip();
 
     zip.addLocalFolder('src');
