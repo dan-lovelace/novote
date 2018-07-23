@@ -2,7 +2,8 @@ function getPointsClass(ctx, callback) {
   let error, classes;
 
   try {
-    if (ctx.innerHTML.indexOf('points') >= 0 || ctx.innerHTML.indexOf('point') >= 0) {
+    // validity check for pattern '[point|points] ·'
+    if ((ctx.innerHTML.indexOf('points') >= 0 || ctx.innerHTML.indexOf('point') >= 0) && ctx.nextSibling.innerHTML.indexOf('·') >= 0) {
       classes = ctx.className.split(' ');
       classes = classes.map(c => '.' + c);
       classes = classes.join('');
@@ -22,6 +23,7 @@ function removeElements() {
   const buttons = document.querySelectorAll('[aria-label="upvote"]');
 
   // get one comment element to find comment points class name for redesign
+  // user comments are currently kept in <p> tags and will be excluded
   const commentSpan = document.querySelector('div.Comment span');
 
   Array.prototype.forEach.call(scores, function(e, i) {

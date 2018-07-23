@@ -2,7 +2,7 @@
   "name": "NoVote",
   "manifest_version": 2,
   "version": "0.1.26",
-  "description": "Hide Reddit's post scores and voting buttons. Works on redesign and old.reddit.com.",
+  "description": "Hide Reddit's post scores, comment scores and voting buttons. Works on redesign and old design.",
   "permissions": [
     "declarativeContent"
   ],
