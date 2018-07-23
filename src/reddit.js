@@ -1,18 +1,25 @@
-function getPointsClass(ctx, callback) {
+// redesign uses randomized, hashed class names. this function is an attempt to
+// best guess the one used to display comment scores
+function getCommentScoreClass(ctx, done) {
   let error, classes;
 
   try {
-    // validity check for pattern '[point|points] ·'
-    if ((ctx.innerHTML.indexOf('points') >= 0 || ctx.innerHTML.indexOf('point') >= 0) && ctx.nextSibling.innerHTML.indexOf('·') >= 0) {
-      classes = ctx.className.split(' ');
-      classes = classes.map(c => '.' + c);
-      classes = classes.join('');
+    // scores are currently rendered as two spans: '<span>X point[s]</span><span> · </span>'
+    // points are somtimes replaced by 'score hidden' or 'score below threshold'
+    const scoreEx = new RegExp(/(\d+.*\spoint[s]?)|(score)/, 'i');
+    const dotEx = new RegExp(/\s·\s/);
+
+    if (
+      scoreEx.test(ctx.innerHTML) &&
+      dotEx.test(ctx.nextSibling.innerHTML)
+    ) {
+      classes = ctx.className.split(' ').map(c => `.${c}`).join('');
     }
   } catch (e) {
-    error = e;
+    error = e || true;
   }
 
-  return callback(error, classes);
+  return done(error, classes);
 }
 
 function removeElements() {
@@ -34,7 +41,7 @@ function removeElements() {
     e.parentNode.innerHTML = '&nbsp;';
   });
 
-  commentSpan && getPointsClass(commentSpan, (err, res) => {
+  commentSpan && getCommentScoreClass(commentSpan, (err, res) => {
     if (!err && res) {
       const points = document.querySelectorAll(res);
 
@@ -45,8 +52,10 @@ function removeElements() {
   });
 }
 
+// enhance performance for browser's back/forward button
 window.addEventListener('popstate', removeElements);
 
+// initialize polling since redesign won't always run our JS on navigation
 setInterval(() => {
   removeElements();
 }, 100);
