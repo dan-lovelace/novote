@@ -26,19 +26,19 @@ function removeElements() {
   // user comments are currently kept in <p> tags and will be excluded
   const commentSpan = document.querySelector('div.Comment span');
 
-  Array.prototype.forEach.call(scores, function(e, i) {
+  Array.prototype.forEach.call(scores, e => {
     e.style = 'display: none';
   });
 
-  Array.prototype.forEach.call(buttons, function(e, i) {
+  Array.prototype.forEach.call(buttons, e => {
     e.parentNode.innerHTML = '&nbsp;';
   });
 
-  commentSpan && getPointsClass(commentSpan, function(err, res) {
+  commentSpan && getPointsClass(commentSpan, (err, res) => {
     if (!err && res) {
       const points = document.querySelectorAll(res);
 
-      Array.prototype.forEach.call(points, function(e, i) {
+      Array.prototype.forEach.call(points, e => {
         e.style = 'display: none';
       });
     }
@@ -47,6 +47,6 @@ function removeElements() {
 
 window.addEventListener('popstate', removeElements);
 
-setInterval(function() {
+setInterval(() => {
   removeElements();
 }, 100);
