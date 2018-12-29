@@ -2,7 +2,7 @@
   "name": "src",
   "version": "0.1.24",
   "description": "",
-  "main": "background.js",
+  "main": "src/background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "add-version": "npm version patch",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devDan118/novote.git"
+    "url": "git+https://github.com/dan-lovelace/novote.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/devDan118/novote/issues"
+    "url": "https://github.com/dan-lovelace/novote/issues"
   },
-  "homepage": "https://github.com/devDan118/novote#readme",
+  "homepage": "https://github.com/dan-lovelace/novote#readme",
   "dependencies": {
     "adm-zip": "^0.4.11"
   }
