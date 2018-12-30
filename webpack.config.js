@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -13,13 +13,6 @@ module.exports = {
         exclude: [
           /src\/background.js$/
         ]
-      },
-      {
-        test: /manifest\.json$/,
-        loader: 'file-loader',
-        options: {
-          name: 'manifest.json'
-        }
       }
     ]
   }
