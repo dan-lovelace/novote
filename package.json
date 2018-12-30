@@ -22,7 +22,8 @@
   "dependencies": {
     "adm-zip": "^0.4.11",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "reactstrap": "^7.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
