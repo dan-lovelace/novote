@@ -12,5 +12,5 @@ setInterval(() => {
 }, 100);
 
 ReactDOM.render((
-  <div>TEST1</div>
+  <div>TEST2</div>
 ), document.getElementById('novote-root'));
