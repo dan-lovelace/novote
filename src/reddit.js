@@ -22,7 +22,7 @@ function getCommentScoreClass(ctx, done) {
   return done(error, classes);
 }
 
-function removeElements() {
+export function removeElements() {
   // TODO: add option to allow comment votes
   // const buttons = document.querySelectorAll('div:not(.Comment) > div > [aria-label="upvote"]');
   const noDisplay = 'display: none';
@@ -231,11 +231,3 @@ function removeElements() {
     // assume not on user profile page
   }
 }
-
-// enhance performance for browser's back/forward button
-window.addEventListener('popstate', removeElements);
-
-// initialize polling since redesign won't always run our JS on navigation
-setInterval(() => {
-  removeElements();
-}, 100);

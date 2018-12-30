@@ -4,7 +4,8 @@
   "version": "0.1.42",
   "description": "Hide Reddit's up/downvote buttons, user karma, post scores, comment scores, post comment counts and gilded icons.",
   "permissions": [
-    "declarativeContent"
+    "declarativeContent",
+    "contextMenus"
   ],
   "content_scripts": [
     {
