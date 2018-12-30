@@ -1,5 +1,12 @@
 # NoVote
 
-A Chrome extension that removes the up/downvote component from all Reddit pages.
+A Chrome extension that removes the following components from Reddit pages:
 
-[Available on the Chrome store](https://chrome.google.com/webstore/detail/novote/kepihiliocoofjjbgmcmalnjmeclpnga)
+- Up/downvote buttons
+- User karma
+- Post scores
+- Comment scores
+- Post comment counts
+- Gilded icons
+
+[Available on the Chrome web store](https://chrome.google.com/webstore/detail/novote/kepihiliocoofjjbgmcmalnjmeclpnga)

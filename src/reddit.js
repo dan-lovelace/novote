@@ -6,7 +6,7 @@ function getCommentScoreClass(ctx, done) {
   try {
     // scores are currently rendered as two spans: '<span>X point[s]</span><span> · </span>'
     // points are somtimes replaced by 'score hidden'
-    const scoreEx = new RegExp(/(\d+.*\spoint[s]?)|(score)/, 'i');
+    const scoreEx = new RegExp(/(\d+.*\spoint[s]?)|(score)/i);
     const dotEx = new RegExp(/\s·\s/);
 
     if (
@@ -63,7 +63,7 @@ function removeElements() {
 
   // get one comment element to find comment points class name for redesign
   // user comments are currently kept in <p> tags and will be excluded
-  const commentSpan = document.querySelector('div.Comment span');
+  const commentSpan = document.querySelector('div.Comment span:nth-child(2)');
   commentSpan && getCommentScoreClass(commentSpan, (err, res) => {
     if (!err && res) {
       const points = document.querySelectorAll(res);
@@ -73,6 +73,96 @@ function removeElements() {
       });
     }
   });
+
+  // ---------------------------------------------------------------------------
+  // comment count (old reddit)
+  // ---------------------------------------------------------------------------
+
+  // from list page
+  try {
+    const commentCount = document.querySelectorAll('.bylink.comments');
+    commentCount && Array.prototype.forEach.call(commentCount, e => {
+      const regex = new RegExp(/[0-9]/g);
+      const test = regex.test(e.innerHTML);
+      if (!!test) {
+        e.innerHTML = 'Comments';
+      }
+    });
+  } catch (e) {
+    // assume not on list page
+  }
+
+  // from post detail page
+  try {
+    const commentCount = document.querySelector('.commentarea .panestack-title .title');
+    commentCount.style = noDisplay;
+  } catch (e) {
+    // assume not on post detail page
+  }
+
+  // ---------------------------------------------------------------------------
+  // comment count (redesign)
+  // ---------------------------------------------------------------------------
+
+  // from list page
+  try {
+    const commentCount = document.querySelectorAll('a[data-click-id="comments"]');
+    const regex = new RegExp(/[0-9]/g);
+    commentCount && Array.prototype.forEach.call(commentCount, e => {
+      const test = regex.test(e.innerHTML);
+      if (!!test) {
+        e.innerHTML = 'Comments';
+      }
+    });
+  } catch (e) {
+    // assume not on list page
+  }
+
+  // from post detail page
+  try {
+    const commentCount = document.querySelectorAll('i.icon.icon-comment');
+    const regex = new RegExp(/[0-9.]+[ k]+comments?/gi);
+    commentCount && Array.prototype.forEach.call(commentCount, e => {
+      const ele = e.nextSibling;
+      const test = regex.test(ele.innerHTML);
+      if (!!test) {
+        ele.innerHTML = 'Comments';
+      }
+
+      // do % upvoted while we're here, this gets crazy
+      const commentWrapper = e.parentNode;
+      const menuWrapper = commentWrapper.parentNode;
+      const actionBar = menuWrapper.parentNode;
+      const upvoted = document.querySelector(`.${actionBar.className} > div:nth-child(2)`);
+      upvoted.style = noDisplay;
+    });
+  } catch (e) {
+    // assume not on post detail page
+  }
+
+  // ---------------------------------------------------------------------------
+  // gilded identifiers (old reddit)
+  // ---------------------------------------------------------------------------
+  try {
+    const gildedIcons = document.querySelectorAll('.gilded-gid1-icon, .gilded-gid2-icon, .gilded-gid3-icon');
+    gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
+      e.style = noDisplay;
+    });
+  } catch (e) {
+    // assume not on list page
+  }
+
+  // ---------------------------------------------------------------------------
+  // gilded identifiers (redesign)
+  // ---------------------------------------------------------------------------
+  try {
+    const gildedIcons = document.querySelectorAll('i[id*="PostAwardBadges"], i[id*="CommentAwardBadges"]');
+    gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
+      e.style = noDisplay;
+    });
+  } catch (e) {
+    // assume not on list page
+  }
 
   // ---------------------------------------------------------------------------
   // karma (old reddit)
