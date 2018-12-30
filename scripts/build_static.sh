@@ -4,7 +4,7 @@
 set -e
 
 # update package version and create the build directory
-npm version patch
+# npm version patch
 mkdir -p ./build
 
 # copy non-bundled required files
