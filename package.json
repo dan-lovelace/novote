@@ -1,6 +1,6 @@
 {
   "name": "src",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "",
   "main": "src/background.js",
   "scripts": {
