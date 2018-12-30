@@ -1,8 +1,10 @@
 import React from 'react';
 
+import Popup from './components/Popup';
+
 const App = () => (
-  <div>
-    App here ;)
+  <div className='novote-app'>
+    <Popup />
   </div>
 );
 
