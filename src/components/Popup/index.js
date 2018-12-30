@@ -19,6 +19,7 @@ class Popup extends React.Component {
     }
 
     chrome.storage.sync.get('test', data => {
+      console.log('data: ', data);
       done(data);
     });
   }
