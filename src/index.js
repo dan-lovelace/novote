@@ -11,5 +11,6 @@ setInterval(() => {
   removeElements();
 }, 100);
 
-const div = document.getElementById('novote-root');
-console.log('div: ', div);
+ReactDOM.render((
+  <div>TEST1</div>
+), document.getElementById('novote-root'));

@@ -30,10 +30,7 @@ module.exports = {
         exclude: [
           /src\/background.js$/
         ],
-        loader: 'babel-loader',
-        options: {
-          presets: ['env']
-        }
+        loader: 'babel-loader'
       }
     ]
   }
