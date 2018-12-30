@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { removeElements } from './reddit';
 
 console.log('2');
@@ -8,3 +10,6 @@ window.addEventListener('popstate', removeElements);
 setInterval(() => {
   removeElements();
 }, 100);
+
+const div = document.getElementById('novote-root');
+console.log('div: ', div);
