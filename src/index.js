@@ -21,6 +21,6 @@ function run() {
   ReactDOM.render(<App />, document.getElementById('novote-root'));
 }
 
-document.addEventListener('onload', () => {
+window.addEventListener('load', () => {
   run();
 })
