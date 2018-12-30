@@ -16,7 +16,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: true
+      filename: 'index.js'
     })
   ],
   devServer: {
