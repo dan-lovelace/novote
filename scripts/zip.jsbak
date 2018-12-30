@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const VERSION = '0.1.42';
+const VERSION = '0.1.43';
 
 // update extension's manifest file
 const manifest = fs.readFile('./src/manifest.json', (readErr, data) => {
