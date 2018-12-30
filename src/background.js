@@ -1,3 +1,4 @@
+console.log('Background script');
 // Enable extension on reddit.com only
 chrome.runtime.onInstalled.addListener(() => {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {

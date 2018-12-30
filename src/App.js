@@ -79,7 +79,7 @@ class App extends React.Component {
       });
     });
   }
-  // 
+
   // beginRemoving = config => {
   //   // window.addEventListener('popstate', () => removeElements(config));
   //   // window.addEventListener('onbeforeunload' () => {
