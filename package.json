@@ -21,6 +21,7 @@
   "homepage": "https://github.com/dan-lovelace/novote#readme",
   "dependencies": {
     "adm-zip": "^0.4.11",
+    "babel-polyfill": "^6.26.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "reactstrap": "^7.0.0"
