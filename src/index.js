@@ -13,6 +13,14 @@ setInterval(() => {
   removeElements();
 }, 100);
 
-ReactDOM.render((
-  <App />
-), document.getElementById('novote-root'));
+// ReactDOM.render((
+//   <App />
+// ), document.getElementById('novote-root'));
+
+function run() {
+  ReactDOM.render(<App />, document.getElementById('novote-root'));
+}
+
+window.addEventListener('load', () => {
+  run();
+})
