@@ -18,7 +18,7 @@ setInterval(() => {
 // ), document.getElementById('novote-root'));
 
 function run() {
-  ReactDOM.render(<App />, document.getElementById('novote-root'));
+  ReactDOM.render(React.createElement(<App />), document.getElementById('novote-root'));
 }
 
 window.addEventListener('load', () => {
