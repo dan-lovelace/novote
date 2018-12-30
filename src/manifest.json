@@ -24,10 +24,6 @@
     ],
     "persistent": false
   },
-  "page_action": {
-    "default_icon": "images/novote32.png",
-    "default_title": "NoVote"
-  },
   "browser_action": {
     "default_icon": "images/novote32.png",
     "popup": "index.html"
