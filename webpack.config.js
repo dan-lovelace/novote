@@ -1,18 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: [
-    'webpack-hot-middleware/client',
-    './src/index.js'
-  ],
+  entry: './src/index.js',
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new WriteFilePlugin({
+      test: /index\.js$/,
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inject: true

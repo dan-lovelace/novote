@@ -71,23 +71,3 @@ chrome.contextMenus.onClicked.addListener(function(itemData) {
   if (itemData.menuItemId == "launcher1")
     chrome.app.window.create('b.html', {id: 'b', outerBounds:{top: 0, left: 310, width: 300, height: 300}});
 });
-
-// Enable extension on reddit.com only
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
-    chrome.declarativeContent.onPageChanged.addRules([
-      {
-        conditions: [
-          new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: {
-              hostContains: 'reddit.com'
-            },
-          })
-        ],
-        actions: [
-          new chrome.declarativeContent.ShowPageAction()
-        ]
-      }
-    ]);
-  });
-});

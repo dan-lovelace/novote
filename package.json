@@ -31,6 +31,6 @@
     "webpack": "^4.28.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14",
-    "webpack-hot-middleware": "^2.24.3"
+    "write-file-webpack-plugin": "^4.5.0"
   }
 }
