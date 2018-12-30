@@ -79,90 +79,90 @@ function removeElements() {
   // ---------------------------------------------------------------------------
 
   // from list page
-  try {
-    const commentCount = document.querySelectorAll('.bylink.comments');
-    commentCount && Array.prototype.forEach.call(commentCount, e => {
-      const regex = new RegExp(/[0-9]/g);
-      const test = regex.test(e.innerHTML);
-      if (!!test) {
-        e.innerHTML = 'Comments';
-      }
-    });
-  } catch (e) {
-    // assume not on list page
-  }
-
-  // from post detail page
-  try {
-    const commentCount = document.querySelector('.commentarea .panestack-title .title');
-    commentCount.style = noDisplay;
-  } catch (e) {
-    // assume not on post detail page
-  }
+  // try {
+  //   const commentCount = document.querySelectorAll('.bylink.comments');
+  //   commentCount && Array.prototype.forEach.call(commentCount, e => {
+  //     const regex = new RegExp(/[0-9]/g);
+  //     const test = regex.test(e.innerHTML);
+  //     if (!!test) {
+  //       e.innerHTML = 'Comments';
+  //     }
+  //   });
+  // } catch (e) {
+  //   // assume not on list page
+  // }
+  //
+  // // from post detail page
+  // try {
+  //   const commentCount = document.querySelector('.commentarea .panestack-title .title');
+  //   commentCount.style = noDisplay;
+  // } catch (e) {
+  //   // assume not on post detail page
+  // }
 
   // ---------------------------------------------------------------------------
   // comment count (redesign)
   // ---------------------------------------------------------------------------
 
   // from list page
-  try {
-    const commentCount = document.querySelectorAll('a[data-click-id="comments"]');
-    const regex = new RegExp(/[0-9]/g);
-    commentCount && Array.prototype.forEach.call(commentCount, e => {
-      const test = regex.test(e.innerHTML);
-      if (!!test) {
-        e.innerHTML = 'Comments';
-      }
-    });
-  } catch (e) {
-    // assume not on list page
-  }
-
-  // from post detail page
-  try {
-    const commentCount = document.querySelectorAll('i.icon.icon-comment');
-    const regex = new RegExp(/[0-9.]+[ k]+comments?/gi);
-    commentCount && Array.prototype.forEach.call(commentCount, e => {
-      const ele = e.nextSibling;
-      const test = regex.test(ele.innerHTML);
-      if (!!test) {
-        ele.innerHTML = 'Comments';
-      }
-
-      // do % upvoted while we're here, this gets crazy
-      const commentWrapper = e.parentNode;
-      const menuWrapper = commentWrapper.parentNode;
-      const actionBar = menuWrapper.parentNode;
-      const upvoted = document.querySelector(`.${actionBar.className} > div:nth-child(2)`);
-      upvoted.style = noDisplay;
-    });
-  } catch (e) {
-    // assume not on post detail page
-  }
+  // try {
+  //   const commentCount = document.querySelectorAll('a[data-click-id="comments"]');
+  //   const regex = new RegExp(/[0-9]/g);
+  //   commentCount && Array.prototype.forEach.call(commentCount, e => {
+  //     const test = regex.test(e.innerHTML);
+  //     if (!!test) {
+  //       e.innerHTML = 'Comments';
+  //     }
+  //   });
+  // } catch (e) {
+  //   // assume not on list page
+  // }
+  //
+  // // from post detail page
+  // try {
+  //   const commentCount = document.querySelectorAll('i.icon.icon-comment');
+  //   const regex = new RegExp(/[0-9.]+[ k]+comments?/gi);
+  //   commentCount && Array.prototype.forEach.call(commentCount, e => {
+  //     const ele = e.nextSibling;
+  //     const test = regex.test(ele.innerHTML);
+  //     if (!!test) {
+  //       ele.innerHTML = 'Comments';
+  //     }
+  //
+  //     // do % upvoted while we're here, this gets crazy
+  //     const commentWrapper = e.parentNode;
+  //     const menuWrapper = commentWrapper.parentNode;
+  //     const actionBar = menuWrapper.parentNode;
+  //     const upvoted = document.querySelector(`.${actionBar.className} > div:nth-child(2)`);
+  //     upvoted.style = noDisplay;
+  //   });
+  // } catch (e) {
+  //   // assume not on post detail page
+  // }
 
   // ---------------------------------------------------------------------------
   // gilded identifiers (old reddit)
   // ---------------------------------------------------------------------------
-  try {
-    const gildedIcons = document.querySelectorAll('.gilded-gid1-icon, .gilded-gid2-icon, .gilded-gid3-icon');
-    gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
-      e.style = noDisplay;
-    });
-  } catch (e) {
-    // assume not on list page
-  }
+  // try {
+  //   const gildedIcons = document.querySelectorAll('.gilded-gid1-icon, .gilded-gid2-icon, .gilded-gid3-icon');
+  //   gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
+  //     e.style = noDisplay;
+  //   });
+  // } catch (e) {
+  //   // assume not on list page
+  // }
 
   // ---------------------------------------------------------------------------
   // gilded identifiers (redesign)
   // ---------------------------------------------------------------------------
-  try {
-    const gildedIcons = document.querySelectorAll('i[id*="PostAwardBadges"], i[id*="CommentAwardBadges"]');
-    gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
-      e.style = noDisplay;
-    });
-  } catch (e) {
-    // assume not on list page
-  }
+  // try {
+  //   const gildedIcons = document.querySelectorAll('i[id*="PostAwardBadges"], i[id*="CommentAwardBadges"]');
+  //   gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
+  //     e.style = noDisplay;
+  //   });
+  // } catch (e) {
+  //   // assume not on list page
+  // }
 
   // ---------------------------------------------------------------------------
   // karma (old reddit)
