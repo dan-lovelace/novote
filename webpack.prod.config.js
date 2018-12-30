@@ -23,7 +23,6 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: [
-          /src\/background.js$/,
           /node_modules/
         ],
         loader: 'babel-loader',

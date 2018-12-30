@@ -15,7 +15,8 @@
         "https://*.reddit.com/*"
       ],
       "js": [
-        "index.js"
+        "index.js",
+        "remove.js"
       ],
       "run_at": "document_start"
     }
