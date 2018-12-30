@@ -14,7 +14,6 @@ cp -a ./src/images/. ./dist/images/
 
 # update zip.js with new version and run it
 VERSION="$(node -p "require('./package.json').version")"
-echo "${VERSION}"
 sed -i bak -e "s|@VERSION@|${VERSION}|g" ./scripts/zip.js
 node ./scripts/zip.js
 
