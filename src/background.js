@@ -55,7 +55,7 @@ function setUpContextMenus() {
   });
 }
 
-chrome.app.runtime.onLaunched.addListener(function() {
+chrome.app.runtime.onInstalled.addListener(function() {
   chrome.app.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
   chrome.app.window.create('b.html', {id: 'b', outerBounds:{top: 0, left: 310, width: 300, height: 300}});
 });
