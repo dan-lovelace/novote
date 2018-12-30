@@ -3,9 +3,7 @@ const fs = require('fs');
 const VERSION = '@VERSION@';
 
 // update extension's manifest file
-const manifest = fs.readFile('./src/manifest.json', (readErr, data) => {
-  console.log('readErr: ', readErr);
-  console.log('data: ', data);
+fs.readFile('./src/manifest.json', (readErr, data) => {
   if (readErr) return;
   const json = JSON.parse(data);
 
