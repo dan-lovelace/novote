@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "add-version": "npm version patch",
     "build": "npm run add-version && mkdir -p build && npm run build-js && npm run post-build",
-    "build-js": "replace '@VERSION@' $npm_package_version build.js && node ./build.js",
-    "post-build": "replace $npm_package_version '@VERSION@' build.js && git add . && git commit -m 'version bump'"
+    "build-js": "sed -i bak -e \"s|@VERSION@|${$npm_package_version}|g\" build.js && node ./build.js",
+    "post-build": "sed -i bak -e \"s|${$npm_package_version}|@VERSION@|g\" build.js && git add . && git commit -m 'version bump'"
   },
   "repository": {
     "type": "git",
