@@ -12,7 +12,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new WriteFilePlugin({
-      test: /index\.js$/,
+      test: /\.js$/,
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',

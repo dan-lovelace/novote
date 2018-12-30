@@ -56,8 +56,8 @@ function setUpContextMenus() {
 }
 
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.app.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
-  chrome.app.window.create('b.html', {id: 'b', outerBounds:{top: 0, left: 310, width: 300, height: 300}});
+  chrome.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
+  chrome.window.create('b.html', {id: 'b', outerBounds:{top: 0, left: 310, width: 300, height: 300}});
 });
 
 chrome.runtime.onInstalled.addListener(function() {
@@ -67,9 +67,9 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.contextMenus.onClicked.addListener(function(itemData) {
   if (itemData.menuItemId == "launcher0")
-    chrome.app.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
+    chrome.window.create('a.html', {id: 'a', outerBounds:{top: 0, left: 0, width: 300, height: 300}});
   if (itemData.menuItemId == "launcher1")
-    chrome.app.window.create('b.html', {id: 'b', outerBounds:{top: 0, left: 310, width: 300, height: 300}});
+    chrome.window.create('b.html', {id: 'b', outerBounds:{top: 0, left: 310, width: 300, height: 300}});
 });
 
 // Enable extension on reddit.com only
