@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { removeElements } from './reddit';
 
+import App from './App';
+
 console.log('2');
 // enhance performance for browser's back/forward button
 window.addEventListener('popstate', removeElements);
@@ -12,5 +14,5 @@ setInterval(() => {
 }, 100);
 
 ReactDOM.render((
-  <div>TEST2</div>
+  <App />
 ), document.getElementById('novote-root'));
