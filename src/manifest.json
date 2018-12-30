@@ -1,7 +1,7 @@
 {
   "name": "NoVote",
   "manifest_version": 2,
-  "version": "0.1.45",
+  "version": "0.1.46",
   "description": "Hide Reddit's up/downvote buttons, user karma, post scores, comment scores, post comment counts and gilded icons.",
   "permissions": [
     "declarativeContent",
