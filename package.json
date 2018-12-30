@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "add-version": "npm version patch",
-    "build": "./build_static.sh"
+    "build": "npm run add-version && ./build_static.sh"
   },
   "repository": {
     "type": "git",
