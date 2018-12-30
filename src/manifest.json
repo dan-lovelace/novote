@@ -5,7 +5,8 @@
   "description": "Hide Reddit's up/downvote buttons, user karma, post scores, comment scores, post comment counts and gilded icons.",
   "permissions": [
     "declarativeContent",
-    "storage"
+    "storage",
+    "tabs"
   ],
   "content_scripts": [
     {

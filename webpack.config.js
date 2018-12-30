@@ -4,7 +4,10 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    './src/index.js'
+  ],
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
@@ -12,7 +15,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new WriteFilePlugin({
-      test: /\.js$/,
+      test: /index\.js$/,
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
@@ -22,17 +25,50 @@ module.exports = {
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    hot: true
+    hot: true,
+    disableHostCheck: true
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: [
-          /src\/background.js$/
+          /src\/background.js$/,
+          /node_modules/
         ],
-        loader: 'babel-loader'
-      }
+        loader: 'babel-loader',
+        options: {
+          presets: ['babel-preset-env', 'react', 'stage-2']
+        }
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: [
+          {
+            // creates style nodes from JS strings
+            loader: "style-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            // translates CSS into CommonJS
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            // compiles Sass to CSS
+            loader: "sass-loader",
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true,
+              sourceMapContents: true
+            }
+          }
+        ]
+      },
     ]
   }
 }
