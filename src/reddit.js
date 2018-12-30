@@ -22,7 +22,7 @@ function getCommentScoreClass(ctx, done) {
   return done(error, classes);
 }
 
-export function removeElements() {
+export function removeElements(config) {
   // TODO: add option to allow comment votes
   // const buttons = document.querySelectorAll('div:not(.Comment) > div > [aria-label="upvote"]');
   const noDisplay = 'display: none';

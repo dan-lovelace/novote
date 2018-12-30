@@ -2,70 +2,16 @@ import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.css'
 import './style.scss';
-
-const fields = [
-  {
-    id: 'postVoteButtons',
-    label: 'Post vote buttons',
-    defaultValue: true,
-  },
-  {
-    id: 'commentVoteButtons',
-    label: 'Comment vote buttons',
-    defaultValue: true,
-  },
-  {
-    id: 'postScore',
-    label: 'Post score',
-    defaultValue: true,
-  },
-  {
-    id: 'commentScore',
-    label: 'Comment score',
-    defaultValue: true,
-  },
-  {
-    id: 'karma',
-    label: 'Karma',
-    defaultValue: true,
-  },
-  {
-    id: 'commentCount',
-    label: 'Comment count',
-    defaultValue: false,
-  },
-  {
-    id: 'gildBadge',
-    label: 'Gild badge',
-    defaultValue: false,
-  }
-];
+import { fields } from '../../App';
 
 class Popup extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loading: true,
-      data: null,
+      data: props.config,
       changed: false,
     };
-
-    chrome.storage.sync.get(fields.map(field => field.id), storage => {
-      const defaults = fields.reduce((acc, val, index) => index !== 1
-        ? Object.assign(acc, { [val.id]: val.defaultValue })
-        : Object.assign({ [acc.id]: acc.defaultValue }, { [val.id]: val.defaultValue })
-      );
-      const data = {
-        ...defaults,
-        ...storage,
-      };
-
-      this.setState({
-        loading: false,
-        data,
-      });
-    });
   }
 
   toggleOption = event => {
@@ -85,7 +31,11 @@ class Popup extends React.Component {
       ...obj
     };
 
-    chrome.storage.sync.set(obj)
+    chrome.storage.sync.set({
+      ...obj,
+      saved: true,
+    })
+    
     this.setState({
       data: newData,
       changed: newData[id] !== data[id]
@@ -98,9 +48,9 @@ class Popup extends React.Component {
   }
 
   render() {
-    const { loading, data, changed } = this.state;
+    const { data, changed } = this.state;
     console.log('changed: ', changed);
-    return loading ? <div>Loading...</div> : (
+    return (
       <div className='popup'>
         <div className='popup--content'>
           <div className='popup--content__heading'>
