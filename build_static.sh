@@ -1,6 +1,6 @@
 #!/bin/sh
 
-npm version patch
+npm version patch &&
 mkdir -p build
 
 VERSION=$npm_package_version
