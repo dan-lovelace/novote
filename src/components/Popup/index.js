@@ -5,7 +5,10 @@ const Popup = props => (
     <div className='popup--content'>
       <h3>Options</h3>
       <form>
-        <input type='checkbox' /> Test
+        <label>
+          <input type='checkbox' />{' '}
+          Test
+        </label>
       </form>
     </div>
   </div>
