@@ -1,15 +1,26 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: [
+    'webpack-hot-middleware/client',
+    './src/index.js'
+  ],
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: true
+    })
+  ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000
+    hot: true
   },
   module: {
     rules: [
@@ -17,7 +28,11 @@ module.exports = {
         test: /\.js$/,
         exclude: [
           /src\/background.js$/
-        ]
+        ],
+        loader: 'babel-loader',
+        options: {
+          presets: ['env']
+        }
       }
     ]
   }

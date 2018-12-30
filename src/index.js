@@ -1,7 +1,7 @@
 import { removeElements } from './reddit';
 import { foo } from './test';
 
-// console.log('foo: ', foo);
+console.log('foo 4: ', foo);
 // enhance performance for browser's back/forward button
 window.addEventListener('popstate', removeElements);
 
