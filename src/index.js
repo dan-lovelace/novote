@@ -4,6 +4,7 @@ import { removeElements } from './reddit';
 
 import App from './App';
 
+console.log('Initializing app');
 // enhance performance for browser's back/forward button
 window.addEventListener('popstate', removeElements);
 
