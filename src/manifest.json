@@ -28,7 +28,7 @@
   "page_action": {
     "default_icon": "images/novote32.png",
     "default_title": "NoVote",
-    "default_popup": "menu/index.html"
+    "default_popup": "index.html"
   },
   "icons": {
     "16": "images/novote16.png",

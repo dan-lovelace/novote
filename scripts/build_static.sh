@@ -8,7 +8,8 @@ set -e
 mkdir -p build
 
 rsync -r --exclude 'menu/' src/ dist
-cp -R src/menu/build/ dist/menu/
+rm src/menu/build/manifest.json
+cp -R src/menu/build/ dist/
 
 # update zip.js with new version and run it
 VERSION="$(node -p "require('./package.json').version")"
