@@ -4,7 +4,6 @@
   "version": "0.1.46",
   "description": "Hide Reddit's up/downvote buttons, user karma, post scores, comment scores, post comment counts and gilded icons.",
   "permissions": [
-    "declarativeContent",
     "storage",
     "tabs"
   ],
@@ -15,22 +14,21 @@
         "https://*.reddit.com/*"
       ],
       "js": [
-        "index.js",
-        "remove.js"
+        "content.js"
       ],
       "run_at": "document_start"
     }
   ],
   "background": {
     "scripts": [
-      "background.js"
+      "background/index.js"
     ],
     "persistent": false
   },
   "page_action": {
     "default_icon": "images/novote32.png",
     "default_title": "NoVote",
-    "default_popup": "index.html"
+    "default_popup": "menu/index.html"
   },
   "icons": {
     "16": "images/novote16.png",

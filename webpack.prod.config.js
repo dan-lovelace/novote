@@ -3,18 +3,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './menu/public/.js',
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'main.min.js',
+    path: path.resolve(__dirname, 'dist', 'menu', 'build', 'static', 'js')
   },
   plugins: [
     new WriteFilePlugin({
-      test: /index\.js$/,
+      test: /content\.js$/,
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
+      template: './src/popup/popup.html',
+      filename: 'popup/popup.html',
       inject: false
     })
   ],
@@ -23,6 +23,9 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: [
+          /src\/background/,
+          /src\/menu/,
+          /src\/popup/,
           /node_modules/
         ],
         loader: 'babel-loader',

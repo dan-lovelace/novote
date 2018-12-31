@@ -5,8 +5,9 @@
   "main": "src/background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config webpack.dev.config.js --mode production",
-    "build": "webpack --config webpack.prod.config.js && ./scripts/build_static.sh"
+    "start": "webpack-dev-server --config webpack.prod.config.js",
+    "build-menu": "cd src/menu && npm run build && cd ../..",
+    "build": "npm run build-menu && ./scripts/build_static.sh"
   },
   "repository": {
     "type": "git",

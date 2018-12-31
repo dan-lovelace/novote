@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { removeElements } from './reddit';
+// import { removeElements } from './reddit';
 
 import './styles/App.scss';
 import Popup from './components/Popup';
@@ -79,25 +79,6 @@ class App extends React.Component {
       });
     });
   }
-
-  // beginRemoving = config => {
-  //   // window.addEventListener('popstate', () => removeElements(config));
-  //   // window.addEventListener('onbeforeunload' () => {
-  //   //   chrome.storage.sync.set({ userLeft: true });
-  //   // });
-  //   chrome.tabs.onActivated.addListener(function(info) {
-  //     console.log('info: ', info);
-  //     console.log('Tab updated :0');
-  //     chrome.storage.sync.set({ tabUpdated: true });
-  //   })
-  //   const keys = Object.keys(chrome.tabs);
-  //   console.log('chrome.tabs: ', chrome.tabs);
-  //
-  //   (function start() {
-  //     removeElements(config);
-  //     setTimeout(start, 100);
-  //   })();
-  // }
 
   render() {
     const { loading, config } = this.state;
