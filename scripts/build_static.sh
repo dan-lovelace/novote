@@ -7,9 +7,14 @@ set -e
 # npm version patch
 mkdir -p build
 
-rsync -r --exclude 'menu/' src/ dist
-rm src/menu/build/manifest.json
-cp -R src/menu/build/ dist/
+# CRA tests
+# rsync -r --exclude 'menu/' src/ dist
+# rm src/menu/build/manifest.json
+# cp -R src/menu/build/ dist/
+
+# Customer webpack tests
+rsync -r --exclude 'popup/' --exclude 'menu/' src/ dist
+cp -R src/popup/dist/ dist/popup/
 
 # update zip.js with new version and run it
 VERSION="$(node -p "require('./package.json').version")"

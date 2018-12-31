@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config webpack.prod.config.js",
     "build": "npm run build-menu && ./scripts/build_static.sh",
-    "build-menu": "cd src/menu && npm run build && cd ../.."
+    "build-menu": "cd src/popup && npm run build && cd ../.."
   },
   "repository": {
     "type": "git",
