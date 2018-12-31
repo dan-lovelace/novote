@@ -14,14 +14,14 @@
         "https://*.reddit.com/*"
       ],
       "js": [
-        "content.js"
+        "bundle.content.js"
       ],
       "run_at": "document_start"
     }
   ],
   "background": {
     "scripts": [
-      "background/index.js"
+      "bundle.background.js"
     ],
     "persistent": false
   },
@@ -29,7 +29,7 @@
   "page_action": {
     "default_icon": "images/novote32.png",
     "default_title": "NoVote",
-    "default_popup": "./popup/popup.html"
+    "default_popup": "./popup/bundle.popup.html"
   },
   "icons": {
     "16": "images/novote16.png",

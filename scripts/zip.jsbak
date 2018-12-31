@@ -16,6 +16,6 @@ fs.readFile('./dist/manifest.json', (readErr, data) => {
     const zip = new AdmZip();
 
     zip.addLocalFolder('./dist');
-    zip.writeZip('./build/' + VERSION + '.zip');
+    zip.writeZip('./builds/' + VERSION + '.zip');
   });
 });
