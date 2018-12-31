@@ -7,6 +7,12 @@
     "storage",
     "tabs"
   ],
+  "background": {
+    "scripts": [
+      "bundle.background.js"
+    ],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": [
@@ -19,18 +25,12 @@
       "run_at": "document_start"
     }
   ],
-  "background": {
-    "scripts": [
-      "bundle.background.js"
-    ],
-    "persistent": false
-  },
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "page_action": {
     "default_icon": "images/novote32.png",
     "default_title": "NoVote",
-    "default_popup": "./popup/bundle.popup.html"
+    "default_popup": "./popup/index.html"
   },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "16": "images/novote16.png",
     "32": "images/novote32.png",

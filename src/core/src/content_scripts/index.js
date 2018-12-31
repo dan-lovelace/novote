@@ -1,51 +1,39 @@
-// import { removeElements } from './reddit';
-//
-// console.log('Initializing app 6');
-//
-// // enhance performance for browser's back/forward button
-// window.addEventListener('popstate', removeElements);
-//
-// // initialize polling since redesign won't always run our JS on navigation
-// setInterval(() => {
-//   removeElements();
-// }, 100);
+import { removeElements } from './reddit';
 
-// Inform the background page that
-// this tab should have a page-action
+import fields from './lib/fields';
+
+// instantiate all listeners
+import './listeners';
+
+export let config;
+
+export function updateConfig(newConfig) {
+  config = newConfig;
+}
+
+// send message to background.js to show page action
 chrome.runtime.sendMessage({
   from: 'content',
   subject: 'showPageAction'
 });
 
-console.log('content document: ', document);
+// load user configuration
+chrome.storage.sync.get(fields.map(field => field.id), storage => {
+  const defaults = fields.reduce((acc, val, index) => index === 1
+    ? Object.assign({ [acc.id]: acc.defaultValue }, { [val.id]: val.defaultValue })
+    : Object.assign(acc, { [val.id]: val.defaultValue })
+  );
 
-// Listen for messages from the popup
-chrome.runtime.onMessage.addListener(function (msg, sender, response) {
-  const { from, subject, data } = msg;
-  console.log('msg: ', msg);
-  if (from === 'popup') {
-    switch (subject) {
-      case 'DOMInfo': {
-        var domInfo = {
-          total: document.querySelectorAll('*').length,
-          inputs: document.querySelectorAll('input').length,
-          buttons: document.querySelectorAll('button').length
-        };
-
-        // Directly respond to the sender (popup),
-        // through the specified callback */
-        response(domInfo);
-        break;
-      }
-
-      case 'UpdateConfig': {
-        console.log('updating config...');
-        break;
-      }
-
-      default:
-        return false;
-
-    }
-  }
+  config = {
+    ...defaults,
+    ...storage,
+  };
+  console.log('initialized with config: ', config);
 });
+
+// initialize polling to remove elements
+(function poll() {
+  // console.log('config: ', config);
+  removeElements(config);
+  setTimeout(poll, 100);
+})();

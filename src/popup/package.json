@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.prod.config.js --mode development"
+    "pre-build": "rm -rf dist/",
+    "build": "npm run pre-build && webpack --config webpack.prod.config.js --mode development"
   },
   "keywords": [],
   "author": "",

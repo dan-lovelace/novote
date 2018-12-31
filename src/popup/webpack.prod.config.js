@@ -66,8 +66,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/popup.html',
-      filename: 'popup.html'
+      template: './src/public/index.html',
+      filename: 'index.html'
     })
   ]
 };

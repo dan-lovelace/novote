@@ -10,13 +10,11 @@ mkdir -p builds
 
 # build core files
 cd src/core
-rm -rf dist/
 npm run build
 cd ../..
 
 # build popup
 cd src/popup
-rm -rf dist/
 npm run build
 cd ../..
 
