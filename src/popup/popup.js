@@ -1,3 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/js/dist/button';
+
 // Update the relevant fields with the new data
 function setDOMInfo(info) {
   console.log('setting lol');
@@ -23,3 +29,5 @@ window.addEventListener('DOMContentLoaded', function () {
         setDOMInfo);
   });
 });
+
+ReactDOM.render(<h1>TEST</h1>, document.getElementById('root'));

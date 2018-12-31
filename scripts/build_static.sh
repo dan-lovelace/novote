@@ -12,7 +12,7 @@ mkdir -p build
 # rm src/menu/build/manifest.json
 # cp -R src/menu/build/ dist/
 
-# Customer webpack tests
+# popup webpack tests
 rsync -r --exclude 'popup/' --exclude 'menu/' src/ dist
 cp -R src/popup/dist/ dist/popup/
 
