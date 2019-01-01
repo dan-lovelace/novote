@@ -40,5 +40,5 @@ chrome.storage.sync.get(fields.map(field => field.id), storage => {
 // initialize polling to remove elements
 (function poll() {
   removeElements(config);
-  setTimeout(poll, 1000);
+  setTimeout(poll, 100);
 })();

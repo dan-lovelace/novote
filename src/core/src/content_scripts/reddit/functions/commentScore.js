@@ -30,8 +30,27 @@ export function removeCommentScore() {
 
   // catch-all
   const scores = document.querySelectorAll('div.score, span.score');
+
+  function hasCommentParent(ctx, done) {
+    try {
+      const parent = Object.assign(ctx.parentNode);
+      const regex = new RegExp(/.*(comment).*/ig);
+      if (!regex.test(parent.className)) {
+        hasCommentParent(parent, done);
+      } else {
+        done();
+      }
+    } catch (err) {
+      return false;
+    }
+
+    return false;
+  };
+
   Array.prototype.forEach.call(scores, e => {
-    e.style = noDisplay;
+    const ele = hasCommentParent(e, () => {
+      e.style = noDisplay;
+    });
   });
 
   // user profile page

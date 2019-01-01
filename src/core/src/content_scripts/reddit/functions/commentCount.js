@@ -11,7 +11,7 @@ export const removeCommentCount = () => {
       const regex = new RegExp(/[0-9]/g);
       const test = regex.test(e.innerHTML);
       if (!!test) {
-        e.innerHTML = 'Comments';
+        e.innerHTML = 'comments';
       }
     });
   } catch (e) {
@@ -37,7 +37,7 @@ export const removeCommentCount = () => {
     commentCountElems && Array.prototype.forEach.call(commentCountElems, e => {
       const test = regex.test(e.innerHTML);
       if (!!test) {
-        e.innerHTML = 'Comments';
+        e.innerHTML = 'comments';
       }
     });
   } catch (e) {
@@ -52,7 +52,7 @@ export const removeCommentCount = () => {
       const ele = e.nextSibling;
       const test = regex.test(ele.innerHTML);
       if (!!test) {
-        ele.innerHTML = 'Comments';
+        ele.innerHTML = 'comments';
       }
 
       // do % upvoted while we're here, this gets crazy

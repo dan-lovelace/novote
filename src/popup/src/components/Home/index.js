@@ -129,7 +129,7 @@ class Home extends React.Component {
                   <Typography component='p' style={{ marginBottom: '1rem' }}>
                     You'll need to refresh the page to see these changes
                   </Typography>
-                  <Button color='primary' onClick={() => this.reloadPage()} style={{ width: '100%' }}>
+                  <Button variant='contained' color='secondary' onClick={() => this.reloadPage()} style={{ width: '100%' }}>
                     <RefreshIcon />
                     Refresh now
                   </Button>
