@@ -1,6 +1,7 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: [
@@ -9,7 +10,22 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.popup.js',
-    path: path.resolve(__dirname, '../../dist')
+    path: path.resolve(__dirname, 'dist')
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new WriteFilePlugin({
+      test: /index\.js$/,
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/public/index.html',
+      filename: 'index.html'
+    }),
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    hot: true,
+    disableHostCheck: true
   },
   module: {
     rules: [
@@ -65,10 +81,4 @@ module.exports = {
       }
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/public/index.html',
-      filename: 'index.html'
-    })
-  ]
 };

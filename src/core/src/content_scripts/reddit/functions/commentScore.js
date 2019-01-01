@@ -1,5 +1,3 @@
-// import { noDisplay } from '../index.js';
-// console.log('noDisplay: ', noDisplay);
 // redesign uses randomized, hashed class names. this function is an attempt to
 // best guess the one used to display comment scores
 function getCommentScoreClass(ctx, done) {
