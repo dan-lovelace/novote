@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# colors
 reset=$(tput sgr0)
 red=$(tput setaf 1)
 green=$(tput setaf 2)
@@ -27,10 +28,8 @@ function build(){
   npm run build
   cd ../
 
-  # remove old distribution
+  # remove old distribution and create a new one
   rm -rf dist/
-
-  # move files to main dist directory
   rsync -r core/dist/ dist
   rsync -r popup/dist/ dist/popup/
 
@@ -47,11 +46,9 @@ function build(){
   zip -r "../builds/${FILENAME}" ./*
   cd ..
 
-  # if [ "${ENV}" = "production" ]
-  # then
-  #   git add .
-  #   git commit -m "new release: ${VERSION}"
-  # fi
+  echo ""
+  echo $green"Build successful!"$reset
+  echo ""
 }
 
 case "$1" in
@@ -71,7 +68,7 @@ case "$1" in
     ;;
 
   *)
-    echo "Creating dev build"
+    echo "Creating non-production build"
     build
     ;;
 esac
