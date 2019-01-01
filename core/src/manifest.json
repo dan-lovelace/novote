@@ -1,7 +1,7 @@
 {
   "name": "NoVote",
   "manifest_version": 2,
-  "version": "0.1.56",
+  "version": "0.1.57",
   "description": "Removes various competitive aspects from Reddit's interface.",
   "permissions": [
     "storage",
