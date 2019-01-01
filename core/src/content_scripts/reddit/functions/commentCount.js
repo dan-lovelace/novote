@@ -7,10 +7,9 @@ export const removeCommentCount = () => {
   // list page
   try {
     const commentCountElems = document.querySelectorAll('.bylink.comments');
+    const regex = new RegExp(/[0-9]/g);
     commentCountElems && Array.prototype.forEach.call(commentCountElems, e => {
-      const regex = new RegExp(/[0-9]/g);
-      const test = regex.test(e.innerHTML);
-      if (!!test) {
+      if (!!regex.test(e.innerHTML)) {
         e.innerHTML = 'comments';
       }
     });
@@ -26,6 +25,19 @@ export const removeCommentCount = () => {
     // assume not on post detail page
   }
 
+  // user profile page
+  try {
+    const commentCountElems = document.querySelectorAll('.Post__flatListItem');
+    const regex = new RegExp(/[0-9].*(comment)s?/g);
+    commentCountElems && Array.prototype.forEach.call(commentCountElems, e => {
+      if (!!regex.test(e.innerHTML) && e.parentNode.className === 'Post__flatList') {
+        e.innerHTML = 'comments';
+      }
+    });
+  } catch (e) {
+    // assume not on user profile page
+  }
+
   // ---------------------------------------------------------------------------
   // new
   // ---------------------------------------------------------------------------
@@ -35,8 +47,7 @@ export const removeCommentCount = () => {
     const commentCountElems = document.querySelectorAll('a[data-click-id="comments"]');
     const regex = new RegExp(/[0-9]/g);
     commentCountElems && Array.prototype.forEach.call(commentCountElems, e => {
-      const test = regex.test(e.innerHTML);
-      if (!!test) {
+      if (!!regex.test(e.innerHTML)) {
         e.innerHTML = 'Comments';
       }
     });
@@ -50,8 +61,7 @@ export const removeCommentCount = () => {
     const regex = new RegExp(/[0-9.]+[ k]+comments?/gi);
     commentCountElems && Array.prototype.forEach.call(commentCountElems, e => {
       const ele = e.nextSibling;
-      const test = regex.test(ele.innerHTML);
-      if (!!test) {
+      if (!!regex.test(ele.innerHTML)) {
         ele.innerHTML = 'comments';
       }
 

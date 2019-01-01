@@ -25,8 +25,8 @@ const fields = [
     defaultValue: false,
   },
   {
-    id: 'gildBadge',
-    label: 'Gild badge',
+    id: 'gildBadges',
+    label: 'Gild badges',
     defaultValue: false,
   },
 ];

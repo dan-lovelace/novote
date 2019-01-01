@@ -53,11 +53,21 @@ class Home extends React.Component {
     };
 
     const { data } = this.state;
-    const obj = { [id]: !data[id] };
+    const key = id;
+    const value = !!data[id];
+    const obj = { [key]: !value };
     const newData = {
       ...data,
       ...obj
     };
+
+    if (key === 'voteButtons' && newData[key] === true) {
+      newData.postScore = true;
+    }
+
+    if (key === 'postScore' && newData[key] === false){
+      newData.voteButtons = false;
+    }
 
     chrome.storage.sync.set({
       ...newData,

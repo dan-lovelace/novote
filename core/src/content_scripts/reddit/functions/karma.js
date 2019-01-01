@@ -5,7 +5,7 @@ export const removeKarma = () => {
   // ---------------------------------------------------------------------------
 
   // catch-all
-  const karmaSpans = document.querySelectorAll('span[class*="karmaSpans"]');
+  const karmaSpans = document.querySelectorAll('span[class*="karma"]');
   Array.prototype.forEach.call(karmaSpans, e => {
     e.style = noDisplay;
   });

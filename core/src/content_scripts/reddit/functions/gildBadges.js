@@ -1,7 +1,8 @@
-export const removeGildBadge = () => {
+export const removeGildBadges = () => {
   const { noDisplay } = require('../index.js');
+
   // ---------------------------------------------------------------------------
-  // gilded identifiers (old reddit)
+  // old
   // ---------------------------------------------------------------------------
   try {
     const gildedIcons = document.querySelectorAll('.gilded-gid1-icon, .gilded-gid2-icon, .gilded-gid3-icon');
@@ -13,12 +14,12 @@ export const removeGildBadge = () => {
   }
 
   // ---------------------------------------------------------------------------
-  // gilded identifiers (redesign)
+  // new
   // ---------------------------------------------------------------------------
   try {
     const gildedIcons = document.querySelectorAll('i[id*="PostAwardBadges"], i[id*="CommentAwardBadges"]');
     gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
-      e.style = noDisplay;
+      e.parentNode.style = noDisplay;
     });
   } catch (e) {
     // assume not on list page
