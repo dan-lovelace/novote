@@ -64,7 +64,7 @@ function build(){
     zip -r "../builds/${FILENAME}" ./*
     cd ..
 
-    echo_stage "Commiting version update"
+    echo_stage "Committing version update"
     git add .
     git commit -m "new version: ${NEW_VERSION}"
   fi
