@@ -89,6 +89,6 @@ case "$1" in
 
   *)
     echo $green"Creating dev build"$reset
-    build
+    build ""
     ;;
 esac
