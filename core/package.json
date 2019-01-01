@@ -1,0 +1,23 @@
+{
+  "name": "novote-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pre-build": "rm -rf dist/",
+    "build": "npm run pre-build && webpack --config webpack.prod.config.js --mode production && npm run build:clean",
+    "build:clean": "cp ./src/manifest.json ./dist/manifest.json && cp -R ./src/images/ ./dist/images"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2"
+  }
+}

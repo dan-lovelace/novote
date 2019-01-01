@@ -1,11 +1,20 @@
 {
   "name": "NoVote",
   "manifest_version": 2,
-  "version": "0.1.42",
-  "description": "Hide Reddit's up/downvote buttons, user karma, post scores, comment scores, post comment counts and gilded icons.",
+  "version": "0.1.57",
+  "description": "Removes various competitive aspects from Reddit's interface.",
   "permissions": [
-    "declarativeContent"
+    "storage",
+    "tabs",
+    "activeTab",
+    "https://*.reddit.com/*"
   ],
+  "background": {
+    "scripts": [
+      "bundle.background.js"
+    ],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": [
@@ -13,21 +22,17 @@
         "https://*.reddit.com/*"
       ],
       "js": [
-        "reddit.js"
+        "bundle.content.js"
       ],
       "run_at": "document_start"
     }
   ],
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
-  },
   "page_action": {
     "default_icon": "images/novote32.png",
-    "default_title": "NoVote"
+    "default_title": "NoVote",
+    "default_popup": "./popup/index.html"
   },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "16": "images/novote16.png",
     "32": "images/novote32.png",

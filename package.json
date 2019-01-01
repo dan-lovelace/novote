@@ -1,11 +1,13 @@
 {
-  "name": "src",
-  "version": "0.1.42",
+  "name": "NoVote",
+  "version": "0.1.57",
   "description": "",
   "main": "src/background.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./build_static.sh"
+    "build": "./scripts/build_static.sh",
+    "build:production": "./scripts/build_static.sh production",
+    "build-partial:core": "./scripts/build_static.sh core",
+    "build-partial:popup": "./scripts/build_static.sh popup"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,6 @@
     "url": "https://github.com/dan-lovelace/novote/issues"
   },
   "homepage": "https://github.com/dan-lovelace/novote#readme",
-  "dependencies": {
-    "adm-zip": "^0.4.11"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
