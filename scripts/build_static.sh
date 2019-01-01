@@ -4,29 +4,39 @@
 reset=$(tput sgr0)
 red=$(tput setaf 1)
 green=$(tput setaf 2)
+cyan=$(tput setaf 6)
 
 # exit if anything fails
 set -e
 
+function echo_stage(){
+  DESCRIPTION=$1
+
+  echo ""
+  echo $cyan"- ${DESCRIPTION}"$reset
+}
+
 function build(){
   PARAM=$1
-  echo "build ${PARAM}"
+
   if [ "${PARAM}" = "production" ]
   then
+    echo_stage "Bumping version"
     npm version patch
 
-    # update manifest.json with latest version
+    echo_stage "Updating manifest.json with new version"
     OLD_VERSION="$(jq .version < ./core/src/manifest.json)"
     NEW_VERSION="\"$(node -p "require('./package.json').version")\""
     sed -i bak -e "s|${OLD_VERSION}|${NEW_VERSION}|g" ./core/src/manifest.json
     rm -rf ./core/src/manifest.jsonbak
   fi
 
+  echo_stage "Creating builds directory if it doesn't exist"
   mkdir -p builds
 
   if [[ "${PARAM}" = "" || "${PARAM}" = "production" || "${PARAM}" = "core" ]]
   then
-    # build core js
+    echo_stage "Building core JS"
     cd core
     npm run build
     cd ../
@@ -34,27 +44,27 @@ function build(){
 
   if [[ "${PARAM}" = "" || "${PARAM}" = "production" || "${PARAM}" = "popup" ]]
   then
-    # build popup js
+    echo_stage "Building popup JS"
     cd popup
     npm run build
     cd ../
   fi
 
-  # remove old distribution and create a new one
+  echo_stage "Removing old distrubition and creating a new one"
   rm -rf dist/
   rsync -r core/dist/ dist
   rsync -r popup/dist/ dist/popup/
 
   if [ "${PARAM}" = "production" ]
   then
-    # build zip file
+    echo_stage "Building zip file"
     FILENAME="${NEW_VERSION//\"/}.zip"
     rm -rf ./builds/${FILENAME}
     cd dist
     zip -r "../builds/${FILENAME}" ./*
     cd ..
 
-    # commit version update
+    echo_stage "Commiting version update"
     git add .
     git commit -m "new version: ${NEW_VERSION}"
   fi
@@ -73,6 +83,7 @@ case "$1" in
 
     if [ "${CHOICE}" = "y" ]
     then
+      echo ""
       echo $green"Creating production build"$reset
       build "production"
     else
@@ -82,16 +93,19 @@ case "$1" in
     ;;
 
   core)
+    echo ""
     echo $green"Building core JS only for a dev build"$reset
     build "core"
     ;;
 
   popup)
+    echo ""
     echo $green"Building popup JS only for a dev build"$reset
     build "popup"
     ;;
 
   *)
+    echo ""
     echo $green"Creating dev build"$reset
     build
     ;;
