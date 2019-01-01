@@ -2,7 +2,7 @@
   "name": "NoVote",
   "manifest_version": 2,
   "version": "0.1.46",
-  "description": "Hide Reddit's up/downvote buttons, user karma, post scores, comment scores, post comment counts and gilded icons.",
+  "description": "Removes various competitive aspects from Reddit's interface",
   "permissions": [
     "storage",
     "tabs",

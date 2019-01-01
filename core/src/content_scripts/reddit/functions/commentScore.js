@@ -22,6 +22,23 @@ function getCommentScoreClass(ctx, done) {
   return done(error, classes);
 }
 
+export function hasCommentParent(ctx, done) {
+  try {
+    const parent = Object.assign(ctx.parentNode);
+    const regex = new RegExp(/.*(comment)\s/ig);
+
+    if (!parent.className || !regex.test(parent.className)) {
+      hasCommentParent(parent, done);
+    } else {
+      done(parent.className);
+    }
+  } catch (err) {
+    done(false);
+  }
+
+  done(false);
+};
+
 export function removeCommentScore() {
   const { noDisplay } = require('../index.js');
   // ---------------------------------------------------------------------------
@@ -31,26 +48,8 @@ export function removeCommentScore() {
   // catch-all
   const scores = document.querySelectorAll('div.score, span.score');
 
-  function hasCommentParent(ctx, done) {
-    try {
-      const parent = Object.assign(ctx.parentNode);
-      const regex = new RegExp(/.*(comment).*/ig);
-      if (!regex.test(parent.className)) {
-        hasCommentParent(parent, done);
-      } else {
-        done();
-      }
-    } catch (err) {
-      return false;
-    }
-
-    return false;
-  };
-
   Array.prototype.forEach.call(scores, e => {
-    const ele = hasCommentParent(e, () => {
-      e.style = noDisplay;
-    });
+    hasCommentParent(e, res => e.style = noDisplay);
   });
 
   // user profile page

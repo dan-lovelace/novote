@@ -3,9 +3,11 @@ import React, { Fragment } from 'react';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import WarningIcon from '@material-ui/icons/Warning';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 
@@ -111,7 +113,12 @@ class Home extends React.Component {
               {changed &&
                 <div className='popup--content__actions'>
                   <Typography className='refresh-text' component='p'>
-                    The page must be refreshed for these changes to take effect
+                    <ListItem>
+                      {/* <ListItemIcon>
+                        <WarningIcon className='warning-icon' />
+                      </ListItemIcon> */}
+                      <ListItemText secondary='The page must be refreshed for these changes to take effect' />
+                    </ListItem>
                   </Typography>
                   <Button className='refresh-button' variant='contained' color='secondary' onClick={() => this.reloadPage()}>
                     <RefreshIcon className='refresh-icon' />

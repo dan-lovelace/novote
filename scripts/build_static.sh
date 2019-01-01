@@ -9,24 +9,30 @@ green=$(tput setaf 2)
 set -e
 
 function build(){
-  ENV=$1
+  PARAM=$1
 
-  if [ "${ENV}" = "production" ]
+  if [ "${PARAM}" = "production" ]
   then
     npm version patch
   fi
 
   mkdir -p builds
 
-  # build core js
-  cd core
-  npm run build
-  cd ../
+  if [[ "${PARAM}" = "" || "${PARAM}" = "core" ]]
+  then
+    # build core js
+    cd core
+    npm run build
+    cd ../
+  fi
 
-  # build popup js
-  cd popup
-  npm run build
-  cd ../
+  if [[ "${PARAM}" = "" || "${PARAM}" = "popup" ]]
+  then
+    # build popup js
+    cd popup
+    npm run build
+    cd ../
+  fi
 
   # remove old distribution and create a new one
   rm -rf dist/
@@ -39,12 +45,15 @@ function build(){
   sed -i bak -e "s|${OLD_VERSION}|${NEW_VERSION}|g" ./dist/manifest.json
   rm -rf ./dist/manifest.jsonbak
 
-  # build zip file
-  FILENAME="${NEW_VERSION//\"/}.zip"
-  rm -rf ./builds/${FILENAME}
-  cd dist
-  zip -r "../builds/${FILENAME}" ./*
-  cd ..
+  if [ "${PARAM}" = "production" ]
+  then
+    # build zip file
+    FILENAME="${NEW_VERSION//\"/}.zip"
+    rm -rf ./builds/${FILENAME}
+    cd dist
+    zip -r "../builds/${FILENAME}" ./*
+    cd ..
+  fi
 
   echo ""
   echo $green"Build successful!"$reset
@@ -59,7 +68,7 @@ case "$1" in
 
     if [ "${CHOICE}" = "y" ]
     then
-      echo "Creating production build"
+      echo $green"Creating production build"$reset
       build "production"
     else
       echo "Exiting"
@@ -67,8 +76,18 @@ case "$1" in
     fi
     ;;
 
+  core)
+    echo $green"Building core JS only for a dev build"$reset
+    build "core"
+    ;;
+
+  popup)
+    echo $green"Building popup JS only for a dev build"$reset
+    build "popup"
+    ;;
+
   *)
-    echo "Creating non-production build"
+    echo $green"Creating dev build"$reset
     build
     ;;
 esac

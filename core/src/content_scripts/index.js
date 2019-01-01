@@ -28,13 +28,6 @@ chrome.storage.sync.get(fields.map(field => field.id), storage => {
     ...defaults,
     ...storage,
   };
-
-  // chrome.runtime.sendMessage({
-  //   from: 'content',
-  //   subject: 'UserConfigLoaded',
-  //   data: config,
-  // });
-  console.log('initialized with config: ', config);
 });
 
 // initialize polling to remove elements
