@@ -14,7 +14,7 @@ function build(){
   if [ "${PARAM}" = "production" ]
   then
     npm version patch
-    
+
     # update manifest.json with latest version
     OLD_VERSION="$(jq .version < ./core/src/manifest.json)"
     NEW_VERSION="\"$(node -p "require('./package.json').version")\""
@@ -63,6 +63,7 @@ function build(){
 case "$1" in
   production)
     echo $red"You are about to create a production build which will increase the version number! This cannot be undone."
+    echo ""
     echo "Are you sure you want to proceed? [y/n]"$reset
     read CHOICE
 
