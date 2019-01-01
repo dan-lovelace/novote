@@ -50,7 +50,7 @@ function build(){
     cd ../
   fi
 
-  echo_stage "Removing old distrubition and creating a new one"
+  echo_stage "Removing old distribution and creating a new one"
   rm -rf dist/
   rsync -r core/dist/ dist
   rsync -r popup/dist/ dist/popup/
@@ -83,8 +83,7 @@ case "$1" in
 
     if [ "${CHOICE}" = "y" ]
     then
-      echo ""
-      echo $green"Creating production build"$reset
+      echo_stage "Creating production build"
       build "production"
     else
       echo "Exiting"
@@ -93,20 +92,17 @@ case "$1" in
     ;;
 
   core)
-    echo ""
-    echo $green"Building core JS only for a dev build"$reset
+    echo_stage "Building core JS only for a dev build"
     build "core"
     ;;
 
   popup)
-    echo ""
-    echo $green"Building popup JS only for a dev build"$reset
+    echo_stage "Building popup JS only for a dev build"
     build "popup"
     ;;
 
   *)
-    echo ""
-    echo $green"Creating dev build"$reset
+    echo_stage "Creating dev build"
     build
     ;;
 esac
