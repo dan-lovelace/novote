@@ -1,5 +1,9 @@
 #!/bin/sh
 
+reset=$(tput sgr0)
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+
 # exit if anything fails
 set -e
 
@@ -43,17 +47,27 @@ function build(){
   zip -r "../builds/${FILENAME}" ./*
   cd ..
 
-  # if [ "${ENV}" = "production" ]
-  # then
-  #   git add .
-  #   git commit -m "new release: ${VERSION}"
-  # fi
+  if [ "${ENV}" = "production" ]
+  then
+    git add .
+    git commit -m "new release: ${VERSION}"
+  fi
 }
 
 case "$1" in
   production)
-    echo "Creating production build"
-    build "production"
+    echo $red"You are about to create a production build which will increase the version number! This cannot be undone."
+    echo "Are you sure you want to proceed? [y/n]"$reset
+    read CHOICE
+
+    if [ "${CHOICE}" = "y" ]
+    then
+      echo "Creating production build"
+      build "production"
+    else
+      echo "Exiting"
+      exit 0
+    fi
     ;;
 
   *)
