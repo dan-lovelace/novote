@@ -3,10 +3,6 @@
 # exit if anything fails
 set -e
 
-# update package version and create the build directory
-# TODO: put this back
-# npm version patch
-
 function build(){
   ENV=$1
 
@@ -38,10 +34,13 @@ function build(){
   OLD_VERSION="$(jq .version < ./dist/manifest.json)"
   NEW_VERSION="\"$(node -p "require('./package.json').version")\""
   sed -i bak -e "s|${OLD_VERSION}|${NEW_VERSION}|g" ./dist/manifest.json
+  rm -rf ./dist/manifest.jsonbak
 
   # build zip file
+  FILENAME="${NEW_VERSION//\"/}.zip"
+  rm -rf ./builds/${FILENAME}
   cd dist
-  zip -r "../builds/${NEW_VERSION//\"/}.zip" ./*
+  zip -r "../builds/${FILENAME}" ./*
   cd ..
 
   if [ "${ENV}" = "production" ]
@@ -51,20 +50,14 @@ function build(){
   fi
 }
 
-echo ""
-echo "Which environment are you building? [dev (default) / prod]"
-read CHOICE
-
-case "${CHOICE}" in
-  prod)
-    echo ""
+case "$1" in
+  production)
     echo "Creating production build"
     build "production"
     ;;
 
   *)
-    echo ""
     echo "Creating dev build"
-    build "dev"
+    build
     ;;
 esac

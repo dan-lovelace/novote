@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./scripts/build_static.sh",
-    "build:production": ""
+    "build:production": "./scripts/build_static.sh production"
   },
   "repository": {
     "type": "git",
