@@ -1,8 +1,25 @@
 import React, { Fragment } from 'react';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import ImageIcon from '@material-ui/icons/Image';
+import WorkIcon from '@material-ui/icons/Work';
+import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import Divider from '@material-ui/core/Divider';
 
-import 'bootstrap/dist/css/bootstrap.css'
 import './style.scss';
 import fields from '../../lib/fields';
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+});
 
 class Home extends React.Component {
   constructor(props) {
@@ -74,18 +91,30 @@ class Home extends React.Component {
 
   render() {
     const { loading, data, changed } = this.state;
+    const { classes } = this.props;
 
     return (
-      <div className='popup'>
+      <div className='popup container'>
         <div className='popup--content'>
           {loading ? (
             <div>Loading</div>
           ) : (
             <Fragment>
-              <div className='popup--content__heading'>
-                Choose what to disable
-              </div>
+              <h6 className='popup--content__heading'>
+                Toggle to disable X
+              </h6>
               <form className='popup--content__form'>
+                <List className={classes.root}>
+                  <ListItem>
+                    <Avatar>
+                      <ImageIcon />
+                    </Avatar>
+                    <ListItemText primary='Test' secondary='Lorem ipsum dolor sit amet' />
+                  </ListItem>
+                  <li>
+                    <Divider variant='inset' />
+                  </li>
+                </List>
                 {fields.map(field => {
                   const { id, label, defaultValue } = field;
                   const storageValue = data[id];
@@ -101,11 +130,11 @@ class Home extends React.Component {
                 })}
               </form>
               {changed &&
-                <div className='popup--content_actions'>
+                <div className='popup--content__actions'>
                   <p className='alert alert-danger' role='alert'>
-                    Please refresh the page to see these changes
+                    Refresh to see changes
                   </p>
-                  <button className='btn btn-primary btn-block' onClick={() => this.reloadPage()}>Refresh now</button>
+                  <Button variant='contained' color='primary' onClick={() => this.reloadPage()}>Refresh now</Button>
                 </div>
               }
             </Fragment>
@@ -116,4 +145,4 @@ class Home extends React.Component {
   }
 };
 
-export default Home;
+export default withStyles(styles)(Home);

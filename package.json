@@ -20,5 +20,6 @@
   "homepage": "https://github.com/dan-lovelace/novote#readme",
   "dependencies": {
     "adm-zip": "^0.4.11"
-  }
+  },
+  "devDependencies": {}
 }

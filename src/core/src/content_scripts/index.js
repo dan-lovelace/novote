@@ -5,7 +5,7 @@ import fields from './lib/fields';
 // instantiate all listeners
 import './listeners';
 
-export let config;
+export let config = {};
 
 export function updateConfig(newConfig) {
   config = newConfig;
@@ -14,7 +14,7 @@ export function updateConfig(newConfig) {
 // send message to background.js to show page action
 chrome.runtime.sendMessage({
   from: 'content',
-  subject: 'showPageAction'
+  subject: 'ShowPageAction'
 });
 
 // load user configuration
@@ -28,12 +28,17 @@ chrome.storage.sync.get(fields.map(field => field.id), storage => {
     ...defaults,
     ...storage,
   };
+
+  // chrome.runtime.sendMessage({
+  //   from: 'content',
+  //   subject: 'UserConfigLoaded',
+  //   data: config,
+  // });
   console.log('initialized with config: ', config);
 });
 
 // initialize polling to remove elements
 (function poll() {
-  // console.log('config: ', config);
   removeElements(config);
-  setTimeout(poll, 100);
+  setTimeout(poll, 1000);
 })();

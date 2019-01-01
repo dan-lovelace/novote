@@ -3,11 +3,12 @@ const path = require('path');
 module.exports = {
   entry: {
     content: './src/content_scripts/index.js',
-    background: './src/background/index.js'
+    background: './src/background/index.js',
   },
   output: {
     filename: 'bundle.[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+
   },
   module: {
     rules: [

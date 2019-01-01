@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pre-build": "rm -rf dist/",
-    "build": "npm run pre-build && webpack --config webpack.prod.config.js --mode development"
+    "start": "npm run pre-build && rm -rf ../../dist/popup/ && webpack-dev-server --config webpack.dev.config.js --mode development",
+    "build": "npm run pre-build && webpack --config webpack.prod.config.js --mode production"
   },
   "keywords": [],
   "author": "",
@@ -24,10 +25,12 @@
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.28.3",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "bootstrap": "^4.2.1",
+    "@material-ui/core": "^3.8.1",
+    "@material-ui/icons": "^3.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1"
