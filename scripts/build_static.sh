@@ -10,7 +10,7 @@ set -e
 
 function build(){
   PARAM=$1
-
+  echo "build ${PARAM}"
   if [ "${PARAM}" = "production" ]
   then
     npm version patch
@@ -53,6 +53,10 @@ function build(){
     cd dist
     zip -r "../builds/${FILENAME}" ./*
     cd ..
+
+    # commit version update
+    git add .
+    git commit -m "new version: ${NEW_VERSION}"
   fi
 
   echo ""
