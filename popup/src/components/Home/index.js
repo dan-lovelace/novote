@@ -1,32 +1,16 @@
 import React, { Fragment } from 'react';
+
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
-import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 
 import './style.scss';
 import fields from '../../lib/fields';
-
-const styles = theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
 
 class Home extends React.Component {
   constructor(props) {
@@ -126,11 +110,11 @@ class Home extends React.Component {
               </List>
               {changed &&
                 <div className='popup--content__actions'>
-                  <Typography component='p' style={{ marginBottom: '1rem' }}>
-                    You'll need to refresh the page to see these changes
+                  <Typography className='refresh-text' component='p'>
+                    The page must be refreshed for these changes to take effect
                   </Typography>
-                  <Button variant='contained' color='secondary' onClick={() => this.reloadPage()} style={{ width: '100%' }}>
-                    <RefreshIcon />
+                  <Button className='refresh-button' variant='contained' color='secondary' onClick={() => this.reloadPage()}>
+                    <RefreshIcon className='refresh-icon' />
                     Refresh now
                   </Button>
                 </div>
@@ -143,4 +127,4 @@ class Home extends React.Component {
   }
 };
 
-export default withStyles(styles)(Home);
+export default Home;

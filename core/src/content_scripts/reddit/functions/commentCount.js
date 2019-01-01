@@ -37,7 +37,7 @@ export const removeCommentCount = () => {
     commentCountElems && Array.prototype.forEach.call(commentCountElems, e => {
       const test = regex.test(e.innerHTML);
       if (!!test) {
-        e.innerHTML = 'comments';
+        e.innerHTML = 'Comments';
       }
     });
   } catch (e) {

@@ -5,7 +5,8 @@
   "main": "src/background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./scripts/build_static.sh"
+    "build": "./scripts/build_static.sh",
+    "build:production": ""
   },
   "repository": {
     "type": "git",

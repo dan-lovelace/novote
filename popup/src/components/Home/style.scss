@@ -1,0 +1,21 @@
+.popup {
+  &--content {
+    min-width: 233px;
+    font-size: 16px;
+    padding: 10px;
+
+    &__actions {
+      .refresh-text {
+        margin-bottom: 1rem;
+      }
+
+      .refresh-button {
+        width: 100%;
+
+        .refresh-icon {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

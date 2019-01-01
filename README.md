@@ -10,3 +10,19 @@ A Chrome extension that removes the following components from Reddit pages:
 - Gilded icons (coming soon)
 
 [Available on the Chrome web store](https://chrome.google.com/webstore/detail/novote/kepihiliocoofjjbgmcmalnjmeclpnga)
+
+### Installation
+
+-
+
+### Local Development
+
+- 
+
+### Builds
+
+- need to install `jq` to create builds
+
+### Deploys
+
+- chrome store...

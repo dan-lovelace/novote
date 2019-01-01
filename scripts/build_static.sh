@@ -6,33 +6,65 @@ set -e
 # update package version and create the build directory
 # TODO: put this back
 # npm version patch
-mkdir -p builds
 
-# build core files
-cd src/core
-npm run build
-cd ../..
+function build(){
+  ENV=$1
 
-# build popup
-cd src/popup
-npm run build
-cd ../..
+  if [ "${ENV}" = "production" ]
+  then
+    npm version patch
+  fi
 
-# remove old distribution
-rm -rf dist/
+  mkdir -p builds
 
-# move files to main dist directory
-rsync -r src/core/dist/ dist
-rsync -r src/popup/dist/ dist/popup/
+  # build core js
+  cd core
+  npm run build
+  cd ../
 
-# update zip.js with new version and run it
-VERSION="$(node -p "require('./package.json').version")"
-sed -i bak -e "s|@VERSION@|${VERSION}|g" scripts/zip.js
-node scripts/zip.js
+  # build popup js
+  cd popup
+  npm run build
+  cd ../
 
-# revert zip.js to original
-sed -i bak -e "s|${VERSION}|@VERSION@|g" scripts/zip.js
+  # remove old distribution
+  rm -rf dist/
 
-# TODO: put this back
-# git add .
-# git commit -m "new release: ${VERSION}"
+  # move files to main dist directory
+  rsync -r core/dist/ dist
+  rsync -r popup/dist/ dist/popup/
+
+  # update manifest
+  OLD_VERSION="$(jq .version < ./dist/manifest.json)"
+  NEW_VERSION="\"$(node -p "require('./package.json').version")\""
+  sed -i bak -e "s|${OLD_VERSION}|${NEW_VERSION}|g" ./dist/manifest.json
+
+  # build zip file
+  cd dist
+  zip -r "../builds/${NEW_VERSION//\"/}.zip" ./*
+  cd ..
+
+  if [ "${ENV}" = "production" ]
+  then
+    git add .
+    git commit -m "new release: ${VERSION}"
+  fi
+}
+
+echo ""
+echo "Which environment are you building? [dev (default) / prod]"
+read CHOICE
+
+case "${CHOICE}" in
+  prod)
+    echo ""
+    echo "Creating production build"
+    build "production"
+    ;;
+
+  *)
+    echo ""
+    echo "Creating dev build"
+    build "dev"
+    ;;
+esac
