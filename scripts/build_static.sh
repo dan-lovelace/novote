@@ -14,6 +14,12 @@ function build(){
   if [ "${PARAM}" = "production" ]
   then
     npm version patch
+    
+    # update manifest.json with latest version
+    OLD_VERSION="$(jq .version < ./core/src/manifest.json)"
+    NEW_VERSION="\"$(node -p "require('./package.json').version")\""
+    sed -i bak -e "s|${OLD_VERSION}|${NEW_VERSION}|g" ./core/src/manifest.json
+    rm -rf ./core/src/manifest.jsonbak
   fi
 
   mkdir -p builds
@@ -38,12 +44,6 @@ function build(){
   rm -rf dist/
   rsync -r core/dist/ dist
   rsync -r popup/dist/ dist/popup/
-
-  # update manifest
-  OLD_VERSION="$(jq .version < ./dist/manifest.json)"
-  NEW_VERSION="\"$(node -p "require('./package.json').version")\""
-  sed -i bak -e "s|${OLD_VERSION}|${NEW_VERSION}|g" ./dist/manifest.json
-  rm -rf ./dist/manifest.jsonbak
 
   if [ "${PARAM}" = "production" ]
   then
