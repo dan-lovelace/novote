@@ -43,11 +43,11 @@ function build(){
   zip -r "../builds/${FILENAME}" ./*
   cd ..
 
-  if [ "${ENV}" = "production" ]
-  then
-    git add .
-    git commit -m "new release: ${VERSION}"
-  fi
+  # if [ "${ENV}" = "production" ]
+  # then
+  #   git add .
+  #   git commit -m "new release: ${VERSION}"
+  # fi
 }
 
 case "$1" in
