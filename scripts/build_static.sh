@@ -24,7 +24,7 @@ function build(){
 
   mkdir -p builds
 
-  if [[ "${PARAM}" = "" || "${PARAM}" = "core" ]]
+  if [[ "${PARAM}" = "" || "${PARAM}" = "production" || "${PARAM}" = "core" ]]
   then
     # build core js
     cd core
@@ -32,7 +32,7 @@ function build(){
     cd ../
   fi
 
-  if [[ "${PARAM}" = "" || "${PARAM}" = "popup" ]]
+  if [[ "${PARAM}" = "" || "${PARAM}" = "production" || "${PARAM}" = "popup" ]]
   then
     # build popup js
     cd popup
@@ -93,6 +93,6 @@ case "$1" in
 
   *)
     echo $green"Creating dev build"$reset
-    build ""
+    build
     ;;
 esac
