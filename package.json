@@ -1,6 +1,6 @@
 {
   "name": "NoVote",
-  "version": "0.1.52",
+  "version": "0.1.53",
   "description": "",
   "main": "src/background.js",
   "scripts": {
