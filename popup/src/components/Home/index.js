@@ -52,12 +52,12 @@ class Home extends React.Component {
       return false;
     };
 
-    const { data } = this.state;
+    const { data: currentData } = this.state;
     const key = id;
-    const value = !!data[id];
+    const value = !!currentData[id];
     const obj = { [key]: !value };
     const newData = {
-      ...data,
+      ...currentData,
       ...obj
     };
 
@@ -74,16 +74,18 @@ class Home extends React.Component {
       saved: true,
     });
 
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.tabs.sendMessage(
-        tabs[0].id,
-        { from: 'popup', subject: 'UpdateConfig', data: newData }
-      )
-    });
+    // NOTE: the following requires use of the 'tabs' permission which shows a message
+    // to the user when installing that the extension has access to browser history
+    // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    //   chrome.tabs.sendMessage(
+    //     tabs[0].id,
+    //     { from: 'popup', subject: 'UpdateConfig', data: newData }
+    //   )
+    // });
 
     this.setState({
       data: newData,
-      changed: changed || newData[id] === false
+      changed: changed || newData[id] !== currentData[id]
     });
   }
 

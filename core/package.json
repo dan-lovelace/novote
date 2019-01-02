@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pre-build": "rm -rf dist/",
-    "build": "npm run pre-build && webpack --config webpack.prod.config.js --mode development && npm run build:clean",
+    "build": "npm run pre-build && webpack --config webpack.prod.config.js --mode production && npm run build:clean",
     "build:clean": "cp ./src/manifest.json ./dist/manifest.json && cp -R ./src/images/ ./dist/images"
   },
   "keywords": [],
