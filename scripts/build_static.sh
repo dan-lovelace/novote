@@ -58,7 +58,8 @@ function build(){
   if [ "${PARAM}" = "production" ]
   then
     echo_stage "Building zip file"
-    FILENAME="${NEW_VERSION//\"/}.zip"
+    VERSION="${NEW_VERSION//\"/}"
+    FILENAME="${VERSION}.zip"
     rm -rf ./builds/${FILENAME}
     cd dist
     zip -r "../builds/${FILENAME}" ./*
@@ -66,7 +67,7 @@ function build(){
 
     echo_stage "Committing version update"
     git add .
-    git commit -m "new version: ${NEW_VERSION}"
+    git commit -m "new version: ${VERSION}"
   fi
 
   echo ""
