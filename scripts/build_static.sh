@@ -22,7 +22,8 @@ function build(){
   if [ "${PARAM}" = "production" ]
   then
     echo_stage "Bumping version"
-    npm version patch
+    # TODO: put this back
+    # npm version patch
 
     echo_stage "Updating manifest.json with new version"
     NEW_VERSION="\"$(node -p "require('./package.json').version")\""
@@ -67,9 +68,10 @@ function build(){
     VERSION="${NEW_VERSION//\"/}"
     FILENAME="${VERSION}.zip"
     rm -rf ./builds/${FILENAME}
-    cd dist
-    zip -r "../builds/${FILENAME}" ./*
-    cd ..
+    node scripts/zip_dist $VERSION
+    # cd dist
+    # zip -r "../builds/${FILENAME}" ./*
+    # cd ..
 
     echo_stage "Committing version update"
     git add .
