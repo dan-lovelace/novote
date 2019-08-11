@@ -64,13 +64,6 @@ export const removeCommentCount = () => {
       if (!!regex.test(ele.innerHTML)) {
         ele.innerHTML = 'comments';
       }
-
-      // do % upvoted while we're here, this gets crazy
-      const commentWrapper = e.parentNode;
-      const menuWrapper = commentWrapper.parentNode;
-      const actionBar = menuWrapper.parentNode;
-      const upvoted = document.querySelector(`.${actionBar.className} > div:nth-child(2)`);
-      upvoted.style = noDisplay;
     });
   } catch (e) {
     // assume not on post detail page

@@ -1,0 +1,10 @@
+Browse Reddit without all the noise by toggling different features on and off. Customizable options give control over the following:
+
+• Upvote and downvote buttons
+• Post scores
+• Comment scores
+• Post comment counts
+• User karma
+• Gild badges
+
+* Reddit is constantly making changes to their layouts which means the extension may not always work as expected. If you are experiencing issues, please open a ticket by selecting the 'Support' tab and clicking 'Contact the developer'. Thanks to everyone that has created a ticket in the past, it's been very helpful in keeping things up to date so far.
