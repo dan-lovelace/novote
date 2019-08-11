@@ -17,7 +17,7 @@ export const removeGildBadges = () => {
   // new
   // ---------------------------------------------------------------------------
   try {
-    const gildedIcons = document.querySelectorAll('i[id*="PostAwardBadges"], i[id*="CommentAwardBadges"]');
+    const gildedIcons = document.querySelectorAll('i[id*="PostAwardBadges"], i[id*="CommentAwardBadges"], span[id*="PostAwardBadges"], span[id*="CommentAwardBadges"]');
     gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
       e.parentNode.style = noDisplay;
     });
