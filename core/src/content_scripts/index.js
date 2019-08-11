@@ -6,7 +6,6 @@ import fields from './lib/fields';
 import './listeners';
 
 export let config = {};
-
 export function updateConfig(newConfig) {
   config = newConfig;
 }
@@ -19,10 +18,10 @@ chrome.runtime.sendMessage({
 
 // load user configuration
 chrome.storage.sync.get(fields.map(field => field.id), storage => {
-  const defaults = fields.reduce((acc, val, index) => index === 1
-    ? Object.assign({ [acc.id]: acc.defaultValue }, { [val.id]: val.defaultValue })
-    : Object.assign(acc, { [val.id]: val.defaultValue })
-  );
+  const defaults = fields.reduce((acc, val) => ({
+    ...acc,
+    [val.id]: val.defaultValue,
+  }), {});
 
   config = {
     ...defaults,

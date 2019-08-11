@@ -37,7 +37,14 @@ function build(){
   then
     echo_stage "Building core JS"
     cd core
-    npm run build
+
+    if [ "$2" = "development" ]
+    then
+      npm run build:development
+    else
+      npm run build
+    fi
+
     cd ../
   fi
 
@@ -93,7 +100,7 @@ case "$1" in
 
   core)
     echo_stage "Building core JS only for a dev build"
-    build "core"
+    build "core" $2
     ;;
 
   popup)

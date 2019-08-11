@@ -1,3 +1,4 @@
+// toggleable options
 const fields = [
   {
     id: 'voteButtons',
