@@ -68,10 +68,8 @@ function build(){
     VERSION="${NEW_VERSION//\"/}"
     FILENAME="${VERSION}.zip"
     rm -rf ./builds/${FILENAME}
+    echo "Zipping new version: $VERSION"
     node scripts/zip_dist $VERSION
-    # cd dist
-    # zip -r "../builds/${FILENAME}" ./*
-    # cd ..
 
     echo_stage "Committing version update"
     git add .
