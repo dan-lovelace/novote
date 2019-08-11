@@ -5,7 +5,7 @@ export const removeKarma = () => {
   // ---------------------------------------------------------------------------
 
   // catch-all
-  const karmaSpans = document.querySelectorAll('span[class*="karma"]');
+  const karmaSpans = document.querySelectorAll('div[class*="karma"], span[class*="karma"]');
   Array.prototype.forEach.call(karmaSpans, e => {
     e.style = noDisplay;
   });
@@ -17,7 +17,7 @@ export const removeKarma = () => {
   // header if logged in
   try {
     const currentUserInfo = document.querySelector('.header-user-dropdown img').nextSibling;
-    const currentUserKarma = currentUserInfo.querySelector('span');
+    const currentUserKarma = currentUserInfo.querySelector('span:nth-child(2)');
     currentUserKarma.style = noDisplay;
   } catch (e) {
     // assume not logged in

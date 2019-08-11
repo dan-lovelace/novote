@@ -25,10 +25,9 @@ function build(){
     npm version patch
 
     echo_stage "Updating manifest.json with new version"
-    OLD_VERSION="$(jq .version < ./core/src/manifest.json)"
     NEW_VERSION="\"$(node -p "require('./package.json').version")\""
-    sed -i bak -e "s|${OLD_VERSION}|${NEW_VERSION}|g" ./core/src/manifest.json
-    rm -rf ./core/src/manifest.jsonbak
+    sed -i.bak -E 's/("version"): "[0-9]+\.[0-9]+\.[0-9]+"/"version": '${NEW_VERSION}'/g' ./core/src/manifest.json
+    rm -rf ./core/src/manifest.json.bak
   fi
 
   echo_stage "Creating builds directory if it doesn't exist"
