@@ -21,6 +21,11 @@ export const removeGildBadges = () => {
     gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
       e.parentNode.style = noDisplay;
     });
+
+    const awardsLinks = document.querySelectorAll('button[data-click-id="awards"]');
+    awardsLinks && Array.prototype.forEach.call(awardsLinks, e => {
+      e.style = noDisplay;
+    });
   } catch (e) {
     // assume not on list page
   }

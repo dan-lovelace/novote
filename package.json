@@ -5,9 +5,9 @@
   "main": "src/background.js",
   "scripts": {
     "build": "sh scripts/build_static.sh",
-    "build:production": "sh scripts/build_static.sh production",
-    "build-partial:core": "sh scripts/build_static.sh core",
-    "build-partial:popup": "sh scripts/build_static.sh popup"
+    "build:production": "bash scripts/build_static.sh production",
+    "build-partial:core": "bash scripts/build_static.sh core",
+    "build-partial:popup": "bash scripts/build_static.sh popup"
   },
   "repository": {
     "type": "git",
