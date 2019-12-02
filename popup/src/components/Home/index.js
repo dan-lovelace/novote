@@ -1,18 +1,17 @@
 import React, { Fragment } from 'react';
 
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import WarningIcon from '@material-ui/icons/Warning';
+import LinkIcon from '@material-ui/icons/Link';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 
 import './style.scss';
 import fields from '../../lib/fields';
+
+const linkedFields = ['voteButtons', 'commentLink'];
 
 class Home extends React.Component {
   constructor(props) {
@@ -25,9 +24,10 @@ class Home extends React.Component {
     };
 
     chrome.storage.sync.get(fields.map(field => field.id), storage => {
-      const defaults = fields.reduce((acc, val, index) => index !== 1
-        ? Object.assign(acc, { [val.id]: val.defaultValue })
-        : Object.assign({ [acc.id]: acc.defaultValue }, { [val.id]: val.defaultValue })
+      const defaults = fields.reduce((acc, val, index) =>
+        index !== 1
+          ? Object.assign(acc, { [val.id]: val.defaultValue })
+          : Object.assign({ [acc.id]: acc.defaultValue }, { [val.id]: val.defaultValue }),
       );
       const userConfig = {
         ...defaults,
@@ -44,13 +44,9 @@ class Home extends React.Component {
   toggleOption = id => {
     const { changed } = this.state;
 
-    if (
-      !id
-      || id.length < 1
-      || !(fields.find(field => field.id === id))
-    ) {
+    if (!id || id.length < 1 || !fields.find(field => field.id === id)) {
       return false;
-    };
+    }
 
     const { data: currentData } = this.state;
     const key = id;
@@ -58,15 +54,23 @@ class Home extends React.Component {
     const obj = { [key]: !value };
     const newData = {
       ...currentData,
-      ...obj
+      ...obj,
     };
 
     if (key === 'voteButtons' && newData[key] === true) {
       newData.postScore = true;
     }
 
-    if (key === 'postScore' && newData[key] === false){
+    if (key === 'postScore' && newData[key] === false) {
       newData.voteButtons = false;
+    }
+
+    if (key === 'commentLink' && newData[key] === true) {
+      newData.commentCount = true;
+    }
+
+    if (key === 'commentCount' && newData[key] === false) {
+      newData.commentLink = false;
     }
 
     chrome.storage.sync.set({
@@ -74,76 +78,81 @@ class Home extends React.Component {
       saved: true,
     });
 
-    // NOTE: the following requires use of the 'tabs' permission which shows a message
-    // to the user when installing that the extension has access to browser history
-    // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    //   chrome.tabs.sendMessage(
-    //     tabs[0].id,
-    //     { from: 'popup', subject: 'UpdateConfig', data: newData }
-    //   )
-    // });
-
     this.setState({
       data: newData,
-      changed: changed || newData[id] !== currentData[id]
+      changed: changed || newData[id] !== currentData[id],
     });
-  }
+  };
 
   reloadPage = () => {
     chrome.tabs.reload();
     window.close();
-  }
+  };
 
   render() {
     const { loading, data, changed } = this.state;
     const { classes } = this.props;
 
     return (
-      <div className='popup container'>
-        <div className='popup--content'>
+      <div className="popup container">
+        <div className="popup--content">
           {loading ? (
             <div>Loading</div>
           ) : (
             <Fragment>
-              <List dense>
+              <FormGroup>
                 {fields.map(field => {
                   const { id, label, defaultValue } = field;
                   const storageValue = data[id];
 
                   return (
-                    <ListItem key={id} id={id} role={undefined} dense button onClick={() => this.toggleOption(id)}>
-                      <ListItemText primary={label} />
-                      <Switch
-                        checked={storageValue}
-                        disableRipple
-                        color='primary'
+                    <div className="toggle-wrapper">
+                      <FormControlLabel
+                        key={id}
+                        id={id}
+                        role={undefined}
+                        dense
+                        button
+                        className="toggle-label"
+                        control={
+                          <Switch
+                            classname="option-toggle"
+                            checked={storageValue}
+                            onChange={() => this.toggleOption(id)}
+                            disableRipple
+                            color="primary"
+                          />
+                        }
+                        label={label}
+                        labelPlacement="start"
                       />
-                    </ListItem>
+                      {linkedFields.includes(id) && <LinkIcon className="link-icon" />}
+                    </div>
                   );
                 })}
-              </List>
-              {changed &&
-                <div className='popup--content__actions'>
-                  <Typography className='refresh-text' component='p'>
-                    <ListItem>
-                      {/* <ListItemIcon>
-                        <WarningIcon className='warning-icon' />
-                      </ListItemIcon> */}
-                      <ListItemText secondary='The page must be refreshed for these changes to take effect' />
-                    </ListItem>
+              </FormGroup>
+              {changed && (
+                <div className="popup--content__actions">
+                  <Typography className="refresh-text" variant="subtitle2">
+                    The page must be refreshed for these changes to take effect
                   </Typography>
-                  <Button className='refresh-button' variant='contained' color='secondary' onClick={() => this.reloadPage()}>
-                    <RefreshIcon className='refresh-icon' />
+                  <Button
+                    className="refresh-button"
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => this.reloadPage()}
+                  >
+                    <RefreshIcon className="refresh-icon" />
                     Refresh now
                   </Button>
                 </div>
-              }
+              )}
             </Fragment>
           )}
         </div>
       </div>
     );
   }
-};
+}
 
 export default Home;

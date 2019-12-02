@@ -4,9 +4,43 @@
     font-size: 16px;
     padding: 10px;
 
+    .toggle-wrapper {
+      position: relative;
+      transition: 0.2s;
+      padding-right: 1rem;
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+
+      .toggle-label {
+        width: 100%;
+        user-select: none;
+      }
+
+      .link-icon {
+        position: absolute;
+        right: 5px;
+        top: 38px;
+        transform: rotate(90deg);
+        font-size: 1.2rem;
+        color: gray;
+        z-index: 10;
+      }
+
+      .option-toggle {
+        border: 1px solid red;
+
+        & > span {
+          border: 1px solid blue;
+        }
+      }
+    }
+
     &__actions {
       .refresh-text {
-        margin-bottom: 1rem;
+        margin: 1rem 0;
+        text-align: center;
       }
 
       .refresh-button {
