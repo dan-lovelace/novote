@@ -21,6 +21,11 @@ const fields = [
     defaultValue: true,
   },
   {
+    id: 'commentLink',
+    label: 'Comments link',
+    defaultValue: false,
+  },
+  {
     id: 'commentCount',
     label: 'Comment count',
     defaultValue: false,

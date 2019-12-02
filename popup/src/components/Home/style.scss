@@ -4,9 +4,35 @@
     font-size: 16px;
     padding: 10px;
 
+    .toggle-wrapper {
+      position: relative;
+
+      .toggle-label {
+        width: 100%;
+      }
+
+      .link-icon {
+        position: absolute;
+        right: 5px;
+        top: 38px;
+        transform: rotate(90deg);
+        font-size: 1.2rem;
+        color: gray;
+      }
+
+      .option-toggle {
+        border: 1px solid red;
+
+        & > span {
+          border: 1px solid blue;
+        }
+      }
+    }
+
     &__actions {
       .refresh-text {
         margin-bottom: 1rem;
+        text-align: center;
       }
 
       .refresh-button {

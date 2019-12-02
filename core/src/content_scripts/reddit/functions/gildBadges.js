@@ -5,7 +5,7 @@ export const removeGildBadges = () => {
   // old
   // ---------------------------------------------------------------------------
   try {
-    const gildedIcons = document.querySelectorAll('.gilded-gid1-icon, .gilded-gid2-icon, .gilded-gid3-icon');
+    const gildedIcons = document.querySelectorAll('.gilded-gid1-icon, .gilded-gid2-icon, .gilded-gid3-icon, .awarding-link');
     gildedIcons && Array.prototype.forEach.call(gildedIcons, e => {
       e.style = noDisplay;
     });

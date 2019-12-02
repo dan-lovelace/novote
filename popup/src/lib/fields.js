@@ -1,3 +1,4 @@
+// toggleable options
 const fields = [
   {
     id: 'voteButtons',
@@ -18,6 +19,11 @@ const fields = [
     id: 'karma',
     label: 'Karma',
     defaultValue: true,
+  },
+  {
+    id: 'commentLink',
+    label: 'Comments link',
+    defaultValue: false,
   },
   {
     id: 'commentCount',
