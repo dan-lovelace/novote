@@ -1,5 +1,5 @@
 {
-  "name": "NoVote",
+  "name": "novote",
   "version": "0.1.64",
   "description": "",
   "main": "src/background.js",
