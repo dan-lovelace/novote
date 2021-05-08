@@ -23,6 +23,9 @@ A build script combines everything into a `dist` directory at the project's root
 
 ### Local development
 
+- From the root directory, run `nvm use`
+- Run `npm install` at the root directory and from the `core` and `popup` directories
+- Run `npm run build` from the root directory
 - Open Chrome and go to `chrome://extensions/`
 - Enable 'Developer mode'
 - Click 'Load unpacked'
