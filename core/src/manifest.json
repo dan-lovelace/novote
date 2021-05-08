@@ -1,7 +1,7 @@
 {
   "name": "NoVote",
   "manifest_version": 2,
-  "version": "0.1.63",
+  "version": "0.1.64",
   "description": "Allows removal of various features from Reddit's interface such as upvote buttons and comment scores.",
   "permissions": [
     "storage"
