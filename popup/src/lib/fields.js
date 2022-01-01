@@ -35,6 +35,11 @@ const fields = [
     label: 'Gild badges',
     defaultValue: false,
   },
+  {
+    id: 'notifications',
+    label: 'Notifications',
+    defaultValue: false,
+  },
 ];
 
 export default fields;

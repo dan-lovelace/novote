@@ -23,28 +23,31 @@ class Home extends React.Component {
       changed: false,
     };
 
-    chrome.storage.sync.get(fields.map(field => field.id), storage => {
-      const defaults = fields.reduce((acc, val, index) =>
-        index !== 1
-          ? Object.assign(acc, { [val.id]: val.defaultValue })
-          : Object.assign({ [acc.id]: acc.defaultValue }, { [val.id]: val.defaultValue }),
-      );
-      const userConfig = {
-        ...defaults,
-        ...storage,
-      };
+    chrome.storage.sync.get(
+      fields.map((field) => field.id),
+      (storage) => {
+        const defaults = fields.reduce((acc, val, index) =>
+          index !== 1
+            ? Object.assign(acc, { [val.id]: val.defaultValue })
+            : Object.assign({ [acc.id]: acc.defaultValue }, { [val.id]: val.defaultValue }),
+        );
+        const userConfig = {
+          ...defaults,
+          ...storage,
+        };
 
-      this.setState({
-        loading: false,
-        data: userConfig,
-      });
-    });
+        this.setState({
+          loading: false,
+          data: userConfig,
+        });
+      },
+    );
   }
 
-  toggleOption = id => {
+  toggleOption = (id) => {
     const { changed } = this.state;
 
-    if (!id || id.length < 1 || !fields.find(field => field.id === id)) {
+    if (!id || id.length < 1 || !fields.find((field) => field.id === id)) {
       return false;
     }
 
@@ -101,7 +104,7 @@ class Home extends React.Component {
           ) : (
             <Fragment>
               <FormGroup>
-                {fields.map(field => {
+                {fields.map((field) => {
                   const { id, label, defaultValue } = field;
                   const storageValue = data[id];
 
